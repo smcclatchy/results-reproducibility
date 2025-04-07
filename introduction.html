@@ -283,7 +283,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Using RMarkdown</h1>
-        <p>Last updated on 2025-04-04 |
+        <p>Last updated on 2025-04-07 |
 
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -321,15 +321,15 @@ research.</li>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
 <hr class="half-width"><p>What does reproducibility mean? This is not and easy question to
 answer because it has different definitions depending on the discipline.
-To start we need to state our definition so that we can all be on the
-same page.</p>
-<p>Reproducibility is distinct from replicability, although the two are
-often used interchangeably (<a href="https://arxiv.org/abs/1802.03311" class="external-link">Barba, 2018</a>, <a href="10.1128/mBio.00525-18">Schloss, 2018</a>).</p>
-<p><em>Reproducible research</em>: Authors provide all the necessary
-data and code to run the analysis again, re-creating the results.</p>
-<p><em>Replication</em>: A study that arrives at the same scientific
-findings as another study, collecting new data and completing new
-analyses.</p>
+Reproducibility is distinct from replicability, although the two are
+often used interchangeably (<a href="https://arxiv.org/abs/1802.03311" class="external-link">Barba, 2018</a>, <a href="10.1128/mBio.00525-18">Schloss, 2018</a>).To start we need to
+state our definition so that we can all be on the same page.</p>
+<p><strong>Reproducible research</strong> Authors provide all the
+necessary data and code to run the analysis again, re-creating the
+results.</p>
+<p><strong>Replication</strong> A study that arrives at the same
+scientific findings as another study, collecting new data and completing
+new analyses.</p>
 <p>Replication requires reproducibility but has a higher goal to re-run
 an entire study rather than only re-create original results using the
 same data and code. In replication you’re running a whole new study,
@@ -343,7 +343,7 @@ obtaining new data, and running a new analysis.</p>
 </tr><tr class="even"><td>Different methods</td>
 <td align="center">Robustness</td>
 <td align="right">Generalizability</td>
-</tr></tbody></table><p>This table is adapted from <a href="https://the-turing-way.netlify.app/" class="external-link">The Turing Way</a>. When you
+</tr></tbody></table><p>The table above is adapted from <a href="https://the-turing-way.netlify.app/" class="external-link">The Turing Way</a>. When you
 use the same methods and the same data as the original study and get the
 same results, that is reproducibility. If you get the same results using
 the same data but different methods, such as using a different
@@ -362,7 +362,9 @@ Everyone</a>, <a href="10.1128/mBio.00525-18">Schloss, 2018</a>)</p>
 science. There are several others as well that influence scientific
 rigor. We should aim to do a little better every time we carry out a
 study and be aware of these other aspects of rigorous science.</p>
-<figure><img src="fig/scientific-rigor.png" alt="A pentagram showing five elements of scientific rigor - logic, experimental redundancy, error analysis, intellectual honesty, and probability and statistics." class="figure mx-auto d-block"><div class="figcaption">Elements of rigorous science</div>
+<figure><img src="fig/scientific-rigor.png" alt="A pentagram showing five elements of scientific rigor - logic, experimental redundancy, error analysis, intellectual honesty, and probability and statistics." class="figure mx-auto d-block"><div class="figcaption">Elements of rigorous science from <a href="https://www.repro4everyone.org/" class="external-link">Reproducibility for
+Everyone</a>
+</div>
 </figure></section><section><h2 class="section-heading" id="factors-that-decrease-reproducibility">Factors that decrease reproducibility<a class="anchor" aria-label="anchor" href="#factors-that-decrease-reproducibility"></a></h2>
 <hr class="half-width"><p>There are many factors that decrease reproducibility: technical,
 human, study design and statistics, and problems with rewards and
@@ -394,8 +396,7 @@ the right path towards improving and accelerating your work. So better
 methods, more data, more power. Larger studies, less pressure to
 publish, fewer incentives to be first rather than right, sharing
 reagents and code, and sharing all of your information about your
-statistical packages. (<a href="https://www.repro4everyone.org/" class="external-link">Reproducibility for
-Everyone</a>)</p>
+statistical packages.</p>
 <p>We need more incentives to actually reproduce each other’s work, and
 for labs to reproduce each other’s work. In this lesson we will stay
 with the simple case of results reproducibility - using the same data
@@ -403,59 +404,43 @@ and code to generate the same results (or not!). This gives us the
 opportunity to look at some of issues that prevent even the simplest
 case of results reproducibility, so that we might adopt some new
 practices or change our existing ones a bit.</p>
-<div id="challenge-1-can-you-do-it" class="callout challenge">
+<div id="challenge-1-the-efficient-technician" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?</h3>
+<div id="challenge-1-the-efficient-technician" class="callout-inner">
+<h3 class="callout-title">Challenge 1: The efficient technician</h3>
 <div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
-</div>
+<p>Your technician colleague finds a way to simplify and expedite an
+experiment. The experiment applies four different wheel-running
+treatments to twenty different mice over the course of five days. Four
+mice are treated individually each day for two hours each with a random
+selection of the four treatments. Your clever colleague decides that a
+simplified protocol would work just as well and save time. Run treatment
+1 five times on day 1, treatment 2 five times on day 2, and so on. Some
+overtime would be required each day but the experiment would be
+completed in only four days, and then they can take Friday off! Does
+this adjustment make sense to you?<br>
+Can you foresee any problems with the experimental results?</p>
 </div>
 </div>
 </div>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Output </h4>
+  <h4 class="accordion-header" id="headingSolution1">
+  Solution to Challenge 1
+  </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within challenge blocks?</h3>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
-<div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
+<p>Since each treatment is run on only one day, the day effectively
+becomes the experimental unit (explain this). Each experimental unit
+(day) has five samples (mice), but only one replication of each
+treatment. There is no valid way to compare treatments as a result.
+There is no way to separate the treatment effect from the day-to-day
+differences in environment, equipment setup, personnel, and other
+extraneous variables.</p>
 </div>
 </div>
 </div>
@@ -467,11 +452,15 @@ practices or change our existing ones a bit.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Callout</h3>
 <div class="callout-content">
-<p>Callout sections can highlight information.</p>
-<p>They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present “asides”: content that is
-not central to the narrative of the lesson, e.g. by providing the answer
-to a commonly-asked question.</p>
+<p>Challenge 1 describes a case of <strong>batch effect</strong>, which
+is a common problem in biomedical studies. Data are collected in batches
+that confound treatment effects by running all of one category
+(e.g. treatment, sex, strain) at the same time. This makes it impossible
+to quantify the effect of the treatment.</p>
+<p>“To consult the statistician after an experiment is finished is often
+merely to ask him to conduct a post mortem examination. He can perhaps
+say what the experiment died of.” - <em>Sir Ronald A. Fisher, First
+Session of the Indian Statistical Conference, Calcutta, 1938</em></p>
 </div>
 </div>
 </div>
@@ -555,8 +544,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/introduction.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/introduction.html",
   "dateCreated": "2025-04-03",
-  "dateModified": "2025-04-04",
-  "datePublished": "2025-04-04"
+  "dateModified": "2025-04-07",
+  "datePublished": "2025-04-07"
 }
 
   </script><script>
