@@ -1,5 +1,5 @@
 ---
-title: "Using RMarkdown"
+title: "Many Facets of Reproducibility"
 teaching: 10
 exercises: 2
 ---
@@ -115,7 +115,8 @@ treatment 2 five times on day 2, and so on. Some overtime would be required
 each day but the experiment would be completed in only four days, and then
 they can take Friday off!
 Does this adjustment make sense to you?  
-Can you foresee any problems with the experimental results?
+Can you foresee any problems with the experimental results?  
+Which factor(s) decreasing reproducibility does this example demonstrate?
 
 :::::::::::::::  solution
 
@@ -126,7 +127,9 @@ the experimental unit (explain this). Each experimental unit (day) has five
 samples (mice), but only one replication of each treatment. There is no
 valid way to compare treatments as a result. There is no way to separate
 the treatment effect from the day-to-day differences in environment,
-equipment setup, personnel, and other extraneous variables.
+equipment setup, personnel, and other extraneous variables.  
+This is an example of study design flaws that decrease reproducibility. It can
+be remedied with training about batch effects.
 
 :::::::::::::::::::::::::::::::::
 
@@ -152,10 +155,9 @@ Statistical Conference, Calcutta, 1938*
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- Reproducibility has many definitions.
+- We define reproducibility here as using the same data and methods as the original study.
+- Adopting reproducible practices strengthens science and makes it more rigorous.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
