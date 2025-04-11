@@ -253,6 +253,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="case-studies.html">2. Case Studies in Irreproducibility</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -494,7 +506,183 @@ demonstrate?</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Since each treatment is run on only one day, the day effectively
+becomes the experimental unit (explain this). Each experimental unit
+(day) has five samples (mice), but only one replication of each
+treatment. There is no valid way to compare treatments as a result.
+There is no way to separate the treatment effect from the day-to-day
+differences in environment, equipment setup, personnel, and other
+extraneous variables.<br>
+This is an example of study design flaws that decrease reproducibility.
+It can be remedied with training about batch effects.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>Challenge 1 describes a case of <strong>batch effect</strong>, which
+is a common problem in biomedical studies. Data are collected in batches
+that confound treatment effects by running all of one category
+(e.g. treatment, sex, strain) at the same time. This makes it impossible
+to quantify the effect of the treatment.</p>
+<p>“To consult the statistician after an experiment is finished is often
+merely to ask him to conduct a post mortem examination. He can perhaps
+say what the experiment died of.” - <em>Sir Ronald A. Fisher, First
+Session of the Indian Statistical Conference, Calcutta, 1938</em></p>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>Reproducibility has many definitions.</li>
+<li>We define reproducibility here as using the same data and methods as
+the original study.</li>
+<li>Adopting reproducible practices strengthens science and makes it
+more rigorous.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-case-studies"><p>Content from <a href="case-studies.html">Case Studies in Irreproducibility</a></p>
+<hr>
+<p>Last updated on 2025-04-11 |
+
+        <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/case-studies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What are some common reasons for irreproducibility?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Describe a conceptual framework for reproducibility.</li>
+<li>Explain how and why adopting reproducible practices benefits
+research.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="problems-and-solutions-to-irreproducible-research">Problems and solutions to irreproducible research<a class="anchor" aria-label="anchor" href="#problems-and-solutions-to-irreproducible-research"></a>
+</h2>
+<hr class="half-width">
+<p>From here we will look at some common problems in irreproducible
+research. We will also discuss ways to overcome these problems. Recall
+that our definition of reproducible research means that authors provide
+all data and code to run the analysis again, re-creating the
+results.</p>
+<table class="table">
+<thead><tr class="header">
+<th><em>Methods</em></th>
+<th align="center"><em>Same Data</em></th>
+<th align="right"><em>Different Data</em></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Same methods</td>
+<td align="center">Reproducibility</td>
+<td align="right">Replicability</td>
+</tr>
+<tr class="even">
+<td>Different methods</td>
+<td align="center">Robustness</td>
+<td align="right">Generalizability</td>
+</tr>
+</tbody>
+</table>
+<p>We will also limit these examples to those that we can examine as
+analysts. The system of rewards and incentives is one that we must work
+within for the time being, with an eye toward improving the culture of
+science. It is not something that we can change in a day however. As
+analysts we also can’t fix some of the human or technical issues that
+impact an experiment. We can investigate study design and statistics,
+however, in data analysis.</p>
+<table class="table">
+<colgroup>
+<col width="36%">
+<col width="63%">
+</colgroup>
+<thead><tr class="header">
+<th><em>Factors</em></th>
+<th align="center"><em>Examples</em></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Technical</td>
+<td align="center">Bad reagents or cell lines, natural variability</td>
+</tr>
+<tr class="even">
+<td>Study design &amp; statistics</td>
+<td align="center">Design flaws, misused methods, batch effects</td>
+</tr>
+<tr class="odd">
+<td>Human</td>
+<td align="center">Poor record keeping or sharing, confirmation
+bias</td>
+</tr>
+<tr class="even">
+<td>Rewards &amp; incentives</td>
+<td align="center">Fraud, paywalls, perverse incentives</td>
+</tr>
+</tbody>
+</table>
+<div id="case-1-the-gene-set-that-characterizes-early-alzheimers-disease" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="case-1-the-gene-set-that-characterizes-early-alzheimers-disease" class="callout-inner">
+<h3 class="callout-title">Case 1: The gene set that characterizes early Alzheimer’s disease</h3>
+<div class="callout-content">
+<p>Watkins, K. Q., et al. (2022). A unique gene expression signature
+characterizes early Alzheimer’s disease. <em>Nature Alzheimer’s</em>,
+33(3), 737-753.</p>
+<p><a href="../fig/AD_expression_heatmap.png">heatmap of expression
+values</a></p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Solution to Challenge 1
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Since each treatment is run on only one day, the day effectively
 becomes the experimental unit (explain this). Each experimental unit
