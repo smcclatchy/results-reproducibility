@@ -65,17 +65,18 @@ aspects of rigorous science.
 ![Elements of rigorous science from [Reproducibility for Everyone](https://www.repro4everyone.org/)](fig/scientific-rigor.png){alt='A pentagram showing five elements of scientific rigor - logic, experimental redundancy, error analysis, intellectual honesty, and probability and statistics.'}
 
 ## Factors that decrease reproducibility
-There are many factors that decrease reproducibility: technical, human, study 
-design and statistics, and problems with rewards and incentives. It's complex in 
-that issues with reproducibility arise out of many smaller decisions and 
-environments that we encounter in research.
+There are many 
+[factors affecting reproducibility](https://www.nature.com/articles/d42473-019-00004-y):
+technical, human, study design and statistics, and problems with rewards and 
+incentives. It's complex in that issues with reproducibility arise out of many 
+smaller decisions and environments that we encounter in research.
 
-| *Factors*                | *Examples*                                        |
-|--------------------------|:-------------------------------------------------:|
-| Technical                | Bad reagents or cell lines, natural variability   |
-| Study design & statistics| Design flaws, misused methods, batch effects      |
-| Human                    | Poor record keeping or sharing, confirmation bias |
-| Rewards & incentives     | Fraud, paywalls, perverse incentives              |
+| *Factors*                  | *Examples*                                      |
+|----------------------------|:-----------------------------------------------:|
+| Technical                  | Bad reagents or cell lines, natural variability |
+| Study design & statistics  | Design flaws, misused methods, batch effects    |
+| Human                      | Poor record keeping or sharing, confirmation bias|
+| Rewards & incentives       | Fraud, paywalls, perverse incentives            |
 
 Other examples, like mistakes and lack of training, encompass all of these 
 factors - technical, study design, statistical, human, and rewards and 
