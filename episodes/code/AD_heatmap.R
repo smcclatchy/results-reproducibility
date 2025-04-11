@@ -19,7 +19,7 @@ pheatmap(expr_matrix,
 
 # Save the heatmap as a png file
 # Remember to turn the graphics device off afterwards
-png(filename = "../fig/AD_expression_heatmap.png")
+png(filename = "AD_expression_heatmap.png")
 pheatmap(expr_matrix, 
          annotation_col = metadata["Diagnosis"], 
          fontsize_row   = 5)

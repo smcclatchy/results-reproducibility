@@ -67,6 +67,7 @@ contact: 'smcclatchy1@gmail.com'
 # Order of episodes in your lesson
 episodes: 
 - introduction.Rmd
+- case-studies.Rmd
 
 # Information for Learners
 learners: 

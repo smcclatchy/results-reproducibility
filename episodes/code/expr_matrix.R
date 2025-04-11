@@ -34,7 +34,9 @@ rownames(expr_matrix) <- gene_ids
 colnames(expr_matrix) <- metadata$SampleID
 
 # Export the matrix 
-write.csv(expr_matrix, file = "../data/expr_matrix.csv", quote = FALSE)
+write.csv(expr_matrix, 
+          file = "data/expr_matrix.csv", 
+          quote = FALSE)
 
 
 
