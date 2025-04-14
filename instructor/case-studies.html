@@ -290,7 +290,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Case Studies in Irreproducibility</h1>
-        <p>Last updated on 2025-04-11 |
+        <p>Last updated on 2025-04-14 |
 
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/case-studies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -350,16 +350,15 @@ analysts we also can’t fix some of the human or technical issues that
 impact an experiment. We can investigate study design and statistics,
 however, in data analysis.</p>
 <table class="table"><colgroup><col width="36%"><col width="63%"></colgroup><thead><tr class="header"><th><em>Factors</em></th>
-<th align="center"><em>Examples</em></th>
+<th><em>Examples</em></th>
 </tr></thead><tbody><tr class="odd"><td>Technical</td>
-<td align="center">Bad reagents or cell lines, natural variability</td>
+<td>Bad reagents or cell lines, natural variability</td>
 </tr><tr class="even"><td>Study design &amp; statistics</td>
-<td align="center">Design flaws, misused methods, batch effects</td>
+<td>Design flaws, misused methods, batch effects</td>
 </tr><tr class="odd"><td>Human</td>
-<td align="center">Poor record keeping or sharing, confirmation
-bias</td>
+<td>Poor record keeping or sharing, confirmation bias</td>
 </tr><tr class="even"><td>Rewards &amp; incentives</td>
-<td align="center">Fraud, paywalls, perverse incentives</td>
+<td>Fraud, paywalls, perverse incentives</td>
 </tr></tbody></table><div id="case-1-the-gene-set-that-characterizes-early-alzheimers-disease" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -367,11 +366,18 @@ bias</td>
 <div id="case-1-the-gene-set-that-characterizes-early-alzheimers-disease" class="callout-inner">
 <h3 class="callout-title">Case 1: The gene set that characterizes early Alzheimer’s disease</h3>
 <div class="callout-content">
-<p>Watkins, K. Q., et al. (2022). A unique gene expression signature
-characterizes early Alzheimer’s disease. <em>Nature Alzheimer’s</em>,
-33(3), 737-753.</p>
-<p><a href="../fig/AD_expression_heatmap.png">heatmap of expression
-values</a></p>
+<p>K.Q. Watkins and coauthors describe a unique gene set characteristic
+of early onset Alzheimer’s Disease. The gene expression heatmap from
+their paper clearly delineates Alzheimer’s patients from a neurotypical
+control group.</p>
+<p><img src="../fig/AD_expression_heatmap.png" alt="heatmap of expression values" class="figure"> Watkins, K. Q., et al. (2022). A
+unique gene expression signature characterizes early Alzheimer’s
+disease. <em>Nature Alzheimer’s</em>, 33(3), 737-753.</p>
+<p>Use the <a href=".././code/AD_heatmap.R">R script</a>, the <a href=".././data/expr_matrix.csv">data</a>, and the <a href=".././data/expr_metadata.csv">metadata</a> to reproduce this plot.</p>
+<p>Can you find other ways to present the (meta)data in the heatmap?
+What do alternate ways of presenting the data show you?</p>
+<p>This is a simulated study and publication. Any resemblance to real
+persons or real studies is purely coincidental.</p>
 </div>
 </div>
 </div>
@@ -384,35 +390,22 @@ values</a></p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>Since each treatment is run on only one day, the day effectively
-becomes the experimental unit (explain this). Each experimental unit
-(day) has five samples (mice), but only one replication of each
-treatment. There is no valid way to compare treatments as a result.
-There is no way to separate the treatment effect from the day-to-day
-differences in environment, equipment setup, personnel, and other
-extraneous variables.<br>
-This is an example of study design flaws that decrease reproducibility.
-It can be remedied with training about batch effects.</p>
+<ol style="list-style-type: decimal"><li>You can replace <code>Diagnosis</code> with <code>Batch</code> in
+the call the <code>pheatmap</code>.</li>
+</ol><div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pheatmap</span><span class="op">(</span><span class="va">expr_matrix</span>, </span>
+<span>         annotation_col <span class="op">=</span> <span class="va">metadata</span><span class="op">[</span><span class="st">"Batch"</span><span class="op">]</span>, </span>
+<span>         fontsize_row   <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre>
 </div>
+<p>This will show the same heatmap, though in this one the genes
+delineate the batch rather than disease state. This is an example of
+complete confounding between batch and disease state. All of the
+Alzheimer’s samples were run in the first batch and all the controls in
+the second. There is no way to disentangle disease state from batch.</p>
 </div>
-</div>
-</div>
-<div id="callout1" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
-<div class="callout-content">
-<p>Challenge 1 describes a case of <strong>batch effect</strong>, which
-is a common problem in biomedical studies. Data are collected in batches
-that confound treatment effects by running all of one category
-(e.g. treatment, sex, strain) at the same time. This makes it impossible
-to quantify the effect of the treatment.</p>
-<p>“To consult the statistician after an experiment is finished is often
-merely to ask him to conduct a post mortem examination. He can perhaps
-say what the experiment died of.” - <em>Sir Ronald A. Fisher, First
-Session of the Indian Statistical Conference, Calcutta, 1938</em></p>
 </div>
 </div>
 </div>
@@ -493,8 +486,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/case-studies.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/case-studies.html",
   "dateCreated": "2025-04-03",
-  "dateModified": "2025-04-11",
-  "datePublished": "2025-04-11"
+  "dateModified": "2025-04-14",
+  "datePublished": "2025-04-14"
 }
 
   </script><script>
