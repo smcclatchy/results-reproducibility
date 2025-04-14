@@ -421,7 +421,7 @@ the second. There is no way to disentangle disease state from batch.</p>
 of early onset Alzheimer’s Disease. The gene expression heatmap from
 their paper clearly delineates Alzheimer’s patients from a neurotypical
 control group.</p>
-<p><img src="../fig/AD_expression_heatmap.png" alt="heatmap of expression values" class="figure"> Watkins, K. Q., et al. (2022). A
+<p><img src=".././fig/AD_expression_heatmap.png" alt="heatmap of expression values" class="figure"> Watkins, K. Q., et al. (2022). A
 unique gene expression signature characterizes early Alzheimer’s
 disease. <em>Nature Alzheimer’s</em>, 33(3), 737-753.</p>
 <p>Use the <a href=".././code/AD_heatmap.R">R script</a>, the <a href=".././data/expr_matrix.csv">data</a>, and the <a href=".././data/expr_metadata.csv">metadata</a> to reproduce this plot.</p>
@@ -460,24 +460,55 @@ the second. There is no way to disentangle disease state from batch.</p>
 </div>
 </div>
 </div>
-<div id="case-1-the-gene-set-that-characterizes-early-alzheimers-disease-2" class="callout challenge">
+<div id="case-2-hippocampal-volume-reduction-in-mild-cognitive-impairment-mci" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="case-1-the-gene-set-that-characterizes-early-alzheimers-disease-2" class="callout-inner">
-<h3 class="callout-title">Case 1: The gene set that characterizes early Alzheimer’s disease</h3>
+<div id="case-2-hippocampal-volume-reduction-in-mild-cognitive-impairment-mci" class="callout-inner">
+<h3 class="callout-title">Case 2: Hippocampal volume reduction in mild cognitive impairment (MCI)</h3>
 <div class="callout-content">
-<p>K.Q. Watkins and coauthors describe a unique gene set characteristic
-of early onset Alzheimer’s Disease. The gene expression heatmap from
-their paper clearly delineates Alzheimer’s patients from a neurotypical
-control group.</p>
-<p><img src="../fig/AD_expression_heatmap.png" alt="heatmap of expression values" class="figure"> Watkins, K. Q., et al. (2022). A
-unique gene expression signature characterizes early Alzheimer’s
-disease. <em>Nature Alzheimer’s</em>, 33(3), 737-753.</p>
-<p>Use the <a href=".././code/AD_heatmap.R">R script</a>, the <a href=".././data/expr_matrix.csv">data</a>, and the <a href=".././data/expr_metadata.csv">metadata</a> to reproduce this plot.</p>
-<p>Can you find other ways to present the (meta)data in the heatmap?
-What do alternate ways of presenting the data show you?</p>
-<p>This is a simulated study and publication. Any resemblance to real
+<p>K.Z. Smith and coauthors describe hippocampal volume loss in subjects
+with mild cognitive impairment (MCI). The boxplots below show a clear
+difference in hippocampal volume between the MCI and control groups.</p>
+<p><img src=".././fig/boxplots.png" alt="heatmap of expression values" class="figure">
+Smith, K. Z., et al. (2023). Hippocampal volume loss in mild cognitive
+impairment. <em>Science Progress</em>, 3(14), 37-53.</p>
+<p>A t-test gave a p-value of less than 0.05 to reject the null
+hypothesis of no difference in means between the two groups.</p>
+<p>Use the <a href=".././code/t_test.R">R script</a> and the <a href=".././data/small_sample_data.csv">data</a> to reproduce the boxplot
+and t-test.</p>
+<ol style="list-style-type: decimal"><li><p>Create a scatterplot of the data by group to get further insight.
+You can also look at the entire dataset to get a sense of it.</p></li>
+<li><p>Calculate the effect size between the two groups.</p></li>
+</ol><div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Estimate effect size (Cohen's d for hippocampal volume)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">effsize</span><span class="op">)</span></span>
+<span><span class="va">d_result</span> <span class="op">&lt;-</span> <span class="fu">cohen.d</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">d_result</span><span class="op">)</span></span></code></pre>
+</div>
+<ol start="3" style="list-style-type: decimal"><li>Use the effect size to calculate statistical power.</li>
+</ol><div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Estimate power for hippocampal volume</span></span>
+<span><span class="co"># Using observed effect size </span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">pwr</span><span class="op">)</span></span>
+<span><span class="va">power_result</span> <span class="op">&lt;-</span> <span class="fu">pwr.t.test</span><span class="op">(</span></span>
+<span>  d <span class="op">=</span> <span class="va">d_result</span><span class="op">$</span><span class="va">estimate</span>,</span>
+<span>  n <span class="op">=</span> <span class="va">n_per_group</span>,</span>
+<span>  sig.level <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"two.sample"</span>,</span>
+<span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">power_result</span><span class="op">)</span></span></code></pre>
+</div>
+<ol start="4" style="list-style-type: decimal"><li>What sample size (<code>n_per_group</code>) would have been needed
+to obtain 80% statistical power in this experiment?</li>
+</ol><p>This is a simulated study and publication. Any resemblance to real
 persons or real studies is purely coincidental.</p>
 </div>
 </div>
@@ -491,21 +522,95 @@ persons or real studies is purely coincidental.</p>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<ol style="list-style-type: decimal"><li>You can replace <code>Diagnosis</code> with <code>Batch</code> in
-the call the <code>pheatmap</code>.</li>
-</ol><div class="codewrapper sourceCode" id="cb3">
+<ol style="list-style-type: decimal"><li>
+</li></ol><div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pheatmap</span><span class="op">(</span><span class="va">expr_matrix</span>, </span>
-<span>         annotation_col <span class="op">=</span> <span class="va">metadata</span><span class="op">[</span><span class="st">"Batch"</span><span class="op">]</span>, </span>
-<span>         fontsize_row   <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">Group</span>, <span class="va">HippocampalVolume</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
-<p>This will show the same heatmap, though in this one the genes
-delineate the batch rather than disease state. This is an example of
-complete confounding between batch and disease state. All of the
-Alzheimer’s samples were run in the first batch and all the controls in
-the second. There is no way to disentangle disease state from batch.</p>
+<ol start="2" style="list-style-type: decimal"><li>
+</li></ol><div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Estimate effect size (Cohen's d for hippocampal volume)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">effsize</span><span class="op">)</span></span>
+<span><span class="va">d_result</span> <span class="op">&lt;-</span> <span class="fu">cohen.d</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">d_result</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Cohen's d
+
+d estimate: -1.558649 (large)
+95 percent confidence interval:
+     lower      upper
+-3.2238802  0.1065818</code></pre>
+</div>
+<ol start="3" style="list-style-type: decimal"><li>
+</li></ol><div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Estimate power for hippocampal volume</span></span>
+<span><span class="co"># Using observed effect size </span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">pwr</span><span class="op">)</span></span>
+<span><span class="va">power_result</span> <span class="op">&lt;-</span> <span class="fu">pwr.t.test</span><span class="op">(</span></span>
+<span>  d <span class="op">=</span> <span class="va">d_result</span><span class="op">$</span><span class="va">estimate</span>,</span>
+<span>  n <span class="op">=</span> <span class="va">n_per_group</span>,</span>
+<span>  sig.level <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"two.sample"</span>,</span>
+<span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">power_result</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>     Two-sample t test power calculation
+
+              n = 5
+              d = 1.558649
+      sig.level = 0.05
+          power = 0.581064
+    alternative = two.sided
+
+NOTE: n is number in *each* group</code></pre>
+</div>
+<ol start="4" style="list-style-type: decimal"><li>
+</li></ol><div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Update sample size to 8</span></span>
+<span><span class="va">n_per_group</span> <span class="op">&lt;-</span> <span class="fl">8</span></span>
+<span></span>
+<span><span class="co"># Estimate power for hippocampal volume</span></span>
+<span><span class="co"># Using observed effect size </span></span>
+<span><span class="va">power_result</span> <span class="op">&lt;-</span> <span class="fu">pwr.t.test</span><span class="op">(</span></span>
+<span>  d <span class="op">=</span> <span class="va">d_result</span><span class="op">$</span><span class="va">estimate</span>,</span>
+<span>  n <span class="op">=</span> <span class="va">n_per_group</span>,</span>
+<span>  sig.level <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"two.sample"</span>,</span>
+<span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">power_result</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>     Two-sample t test power calculation
+
+              n = 8
+              d = 1.558649
+      sig.level = 0.05
+          power = 0.8258431
+    alternative = two.sided
+
+NOTE: n is number in *each* group</code></pre>
+</div>
 </div>
 </div>
 </div>
