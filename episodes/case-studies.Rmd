@@ -94,7 +94,7 @@ K.Q. Watkins and coauthors describe a unique gene set characteristic of early
 onset Alzheimer's Disease. The gene expression heatmap from their paper
 clearly delineates Alzheimer's patients from a neurotypical control group. 
 
-![heatmap of expression values](../fig/AD_expression_heatmap.png)
+![heatmap of expression values](./fig/AD_expression_heatmap.png)
 Watkins, K. Q., et al. (2022). A unique gene expression signature characterizes 
 early Alzheimer's disease. _Nature Alzheimer's_, 33(3), 737-753.
 
@@ -133,21 +133,52 @@ disentangle disease state from batch.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Case 1: The gene set that characterizes early Alzheimer's disease 
+## Case 2: Hippocampal volume reduction in mild cognitive impairment (MCI)
 
-K.Q. Watkins and coauthors describe a unique gene set characteristic of early
-onset Alzheimer's Disease. The gene expression heatmap from their paper
-clearly delineates Alzheimer's patients from a neurotypical control group. 
+K.Z. Smith and coauthors describe hippocampal volume loss in subjects with mild 
+cognitive impairment (MCI). The boxplots below show a clear difference in
+hippocampal volume between the MCI and control groups. 
 
-![heatmap of expression values](../fig/AD_expression_heatmap.png)
-Watkins, K. Q., et al. (2022). A unique gene expression signature characterizes 
-early Alzheimer's disease. _Nature Alzheimer's_, 33(3), 737-753.
+![heatmap of expression values](./fig/boxplots.png)
+Smith, K. Z., et al. (2023). Hippocampal volume loss in mild cognitive 
+impairment. _Science Progress_, 3(14), 37-53.
 
-Use the [R script](./code/AD_heatmap.R), the [data](./data/expr_matrix.csv), and 
-the [metadata](./data/expr_metadata.csv) to reproduce this plot. 
+A t-test gave a p-value of less than 0.05 to reject the null hypothesis of no 
+difference in means between the two groups.
 
-Can you find other ways to present the (meta)data in the heatmap? 
-What do alternate ways of presenting the data show you?
+Use the [R script](./code/t_test.R) and the [data](./data/small_sample_data.csv) 
+to reproduce the boxplot and t-test. 
+
+1. Create a scatterplot of the data by group to get further insight. You can
+also look at the entire dataset to get a sense of it.  
+
+2. Calculate the effect size between the two groups.
+
+```r
+# Estimate effect size (Cohen's d for hippocampal volume)
+library(effsize)
+d_result <- cohen.d(HippocampalVolume ~ Group, data = data)
+print(d_result)
+```
+
+3. Use the effect size to calculate statistical power. 
+
+```r
+# Estimate power for hippocampal volume
+# Using observed effect size 
+library(pwr)
+power_result <- pwr.t.test(
+  d = d_result$estimate,
+  n = n_per_group,
+  sig.level = 0.05,
+  type = "two.sample",
+  alternative = "two.sided"
+)
+print(power_result)
+```
+
+4. What sample size (`n_per_group`) would have been needed to obtain 80% 
+statistical power in this experiment?
 
 This is a simulated study and publication. Any resemblance to real persons or 
 real studies is purely coincidental.
@@ -156,20 +187,83 @@ real studies is purely coincidental.
 
 ## Solution to Challenge 1
 
-1. You can replace `Diagnosis` with `Batch` in the call the `pheatmap`.
-
+1. 
 ```r
-pheatmap(expr_matrix, 
-         annotation_col = metadata["Batch"], 
-         fontsize_row   = 5)
+data %>% ggplot(aes(Group, HippocampalVolume)) + geom_point()
 ```
 
-This will show the same heatmap, though in this one the genes delineate the 
-batch rather than disease state. This is an example of complete confounding
-between batch and disease state. All of the Alzheimer's samples were run in 
-the first batch and all the controls in the second. There is no way to
-disentangle disease state from batch.
+2. 
+```r
+# Estimate effect size (Cohen's d for hippocampal volume)
+library(effsize)
+d_result <- cohen.d(HippocampalVolume ~ Group, data = data)
+print(d_result)
+```
 
+```output
+Cohen's d
+
+d estimate: -1.558649 (large)
+95 percent confidence interval:
+     lower      upper 
+-3.2238802  0.1065818
+```
+
+3. 
+```r
+# Estimate power for hippocampal volume
+# Using observed effect size 
+library(pwr)
+power_result <- pwr.t.test(
+  d = d_result$estimate,
+  n = n_per_group,
+  sig.level = 0.05,
+  type = "two.sample",
+  alternative = "two.sided"
+)
+print(power_result)
+```
+
+```output
+     Two-sample t test power calculation 
+
+              n = 5
+              d = 1.558649
+      sig.level = 0.05
+          power = 0.581064
+    alternative = two.sided
+
+NOTE: n is number in *each* group
+```
+
+4.
+```r
+# Update sample size to 8
+n_per_group <- 8
+
+# Estimate power for hippocampal volume
+# Using observed effect size 
+power_result <- pwr.t.test(
+  d = d_result$estimate,
+  n = n_per_group,
+  sig.level = 0.05,
+  type = "two.sample",
+  alternative = "two.sided"
+)
+print(power_result)
+```
+
+```output
+     Two-sample t test power calculation 
+
+              n = 8
+              d = 1.558649
+      sig.level = 0.05
+          power = 0.8258431
+    alternative = two.sided
+
+NOTE: n is number in *each* group
+```
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

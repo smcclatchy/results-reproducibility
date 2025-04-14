@@ -1,8 +1,14 @@
 # load data
 data <- read.csv(file = "data/small_sample_data.csv")
 
-# Perform t-tests (example: Amyloid)
+# Perform t-tests 
 t_test_result <- t.test(Amyloid ~ Group, data = data)
+print(t_test_result)
+
+t_test_result <- t.test(Tau ~ Group, data = data)
+print(t_test_result)
+
+t_test_result <- t.test(HippocampalVolume ~ Group, data = data)
 print(t_test_result)
 
 # visualize biomarkers
