@@ -72,7 +72,7 @@ incentives. It's complex in that issues with reproducibility arise out of many
 smaller decisions and environments that we encounter in research.
 
 | *Factors*                  | *Examples*                                      |
-|----------------------------|:-----------------------------------------------:|
+|----------------------------|-------------------------------------------------|
 | Technical                  | Bad reagents or cell lines, natural variability |
 | Study design & statistics  | Design flaws, misused methods, batch effects    |
 | Human                      | Poor record keeping or sharing, confirmation bias|

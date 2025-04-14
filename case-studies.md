@@ -36,7 +36,7 @@ human or technical issues that impact an experiment. We can investigate study
 design and statistics, however, in data analysis.
 
 | *Factors*                  | *Examples*                                      |
-|----------------------------|:-----------------------------------------------:|
+|----------------------------|-------------------------------------------------|
 | Technical                  | Bad reagents or cell lines, natural variability |
 | Study design & statistics  | Design flaws, misused methods, batch effects    |
 | Human                      | Poor record keeping or sharing, confirmation bias|
@@ -46,43 +46,46 @@ design and statistics, however, in data analysis.
 
 ## Case 1: The gene set that characterizes early Alzheimer's disease 
 
+K.Q. Watkins and coauthors describe a unique gene set characteristic of early
+onset Alzheimer's Disease. The gene expression heatmap from their paper
+clearly delineates Alzheimer's patients from a neurotypical control group. 
+
+![heatmap of expression values](../fig/AD_expression_heatmap.png)
 Watkins, K. Q., et al. (2022). A unique gene expression signature characterizes 
 early Alzheimer's disease. _Nature Alzheimer's_, 33(3), 737-753.
 
-[heatmap of expression values](../fig/AD_expression_heatmap.png)
+Use the [R script](./code/AD_heatmap.R), the [data](./data/expr_matrix.csv), and 
+the [metadata](./data/expr_metadata.csv) to reproduce this plot. 
+
+Can you find other ways to present the (meta)data in the heatmap? 
+What do alternate ways of presenting the data show you?
+
+This is a simulated study and publication. Any resemblance to real persons or 
+real studies is purely coincidental.
 
 :::::::::::::::  solution
 
 ## Solution to Challenge 1
 
-Since each treatment is run on only one day, the day effectively becomes
-the experimental unit (explain this). Each experimental unit (day) has five
-samples (mice), but only one replication of each treatment. There is no
-valid way to compare treatments as a result. There is no way to separate
-the treatment effect from the day-to-day differences in environment,
-equipment setup, personnel, and other extraneous variables.  
-This is an example of study design flaws that decrease reproducibility. It can
-be remedied with training about batch effects.
+1. You can replace `Diagnosis` with `Batch` in the call the `pheatmap`.
+
+```r
+pheatmap(expr_matrix, 
+         annotation_col = metadata["Batch"], 
+         fontsize_row   = 5)
+```
+
+This will show the same heatmap, though in this one the genes delineate the 
+batch rather than disease state. This is an example of complete confounding
+between batch and disease state. All of the Alzheimer's samples were run in 
+the first batch and all the controls in the second. There is no way to
+disentangle disease state from batch.
 
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-
-::::::::::::::::::::::::::::::::::::: callout
-
-Challenge 1 describes a case of **batch effect**, which is a common problem in
-biomedical studies. Data are collected in batches that confound treatment 
-effects by running all of one category (e.g. treatment, sex, strain) at the same
-time. This makes it impossible to quantify the effect of the treatment. 
-
-"To consult the statistician after an experiment is finished is often merely to 
-ask him to conduct a post mortem examination. He can perhaps say what the 
-experiment died of." - *Sir Ronald A. Fisher, First Session of the Indian 
-Statistical Conference, Calcutta, 1938*
-
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 
