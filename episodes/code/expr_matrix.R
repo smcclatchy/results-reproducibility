@@ -38,6 +38,12 @@ write.csv(expr_matrix,
           file = "data/expr_matrix.csv", 
           quote = FALSE)
 
+# Export the metadata
+write.csv(metadata, 
+          file = "data/expr_metadata.csv", 
+          quote = FALSE)
+
+
 
 
 

@@ -1,0 +1,11 @@
+,SampleID,Batch,Diagnosis
+1,Sample1,Batch1,AD
+2,Sample2,Batch1,AD
+3,Sample3,Batch1,AD
+4,Sample4,Batch1,AD
+5,Sample5,Batch1,AD
+6,Sample6,Batch2,Control
+7,Sample7,Batch2,Control
+8,Sample8,Batch2,Control
+9,Sample9,Batch2,Control
+10,Sample10,Batch2,Control
