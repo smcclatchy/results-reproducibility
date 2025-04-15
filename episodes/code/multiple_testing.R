@@ -26,9 +26,8 @@ data <- data.frame(
 
 # Intentionally misuse 1: Multiple uncorrected t-tests
 cat("\n--- Multiple Testing Without Correction ---\n")
-p_values <- sapply(data[ , 5:15], function(bio) {
-  t.test(bio ~ data$Group)$p.value
-})
+data %>% summarize(across(5:15, 
+                          function(bio) t.test(bio ~ data$Group)$p.value))
 print(p_values)
 
 # Intentionally misuse 2: P-hacking - try many subgroups
@@ -59,3 +58,8 @@ cat("\n--- Summary of Misuses ---\n")
 cat("1. Multiple comparisons performed without any correction (e.g., Bonferroni).\n")
 cat("2. Subgroup analysis conducted post hoc without proper justification.\n")
 cat("3. Optional stopping inflates false positives by cherry-picking sample sizes.\n")
+
+# output data
+write.csv(data, 
+          file = "data/multiple_testing_data.csv", 
+          quote = FALSE)
