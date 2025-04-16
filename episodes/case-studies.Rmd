@@ -45,50 +45,7 @@ study design, misused methods, and batch effects.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Case 1: 
-
-K.Q. Watkins and coauthors describe a unique gene set characteristic of early
-onset Alzheimer's Disease. The gene expression heatmap from their paper
-clearly delineates Alzheimer's patients from a neurotypical control group. 
-
-![heatmap of expression values](../fig/AD_expression_heatmap.png)
-Watkins, K. Q., et al. (2022). A unique gene expression signature characterizes 
-early Alzheimer's disease. _Nature Alzheimer's_, 33(3), 737-753.
-
-Use the [R script](./code/AD_heatmap.R), the [data](./data/expr_matrix.csv), and 
-the [metadata](./data/expr_metadata.csv) to reproduce this plot. 
-
-Can you find other ways to present the (meta)data in the heatmap? 
-What do alternate ways of presenting the data show you?
-
-This is a simulated study and publication. Any resemblance to real persons or 
-real studies is purely coincidental.
-
-:::::::::::::::  solution
-
-## Solution to Case 1
-
-1. You can replace `Diagnosis` with `Batch` in the call the `pheatmap`.
-
-```r
-pheatmap(expr_matrix, 
-         annotation_col = metadata["Batch"], 
-         fontsize_row   = 5)
-```
-
-This will show the same heatmap, though in this one the genes delineate the 
-batch rather than disease state. This is an example of complete confounding
-between batch and disease state. All of the Alzheimer's samples were run in 
-the first batch and all the controls in the second. There is no way to
-disentangle disease state from batch.
-
-:::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## Case 2: The gene set that characterizes early Alzheimer's disease 
+## Case 1: The gene set that characterizes early Alzheimer's disease 
 
 K.Q. Watkins and coauthors describe a unique gene set characteristic of early
 onset Alzheimer's Disease. The gene expression heatmap from their paper
@@ -109,7 +66,7 @@ real studies is purely coincidental.
 
 :::::::::::::::  solution
 
-## Solution to Case 2
+## Solution to Case 1
 
 1. You can replace `Diagnosis` with `Batch` in the call the `pheatmap`.
 
@@ -185,7 +142,7 @@ real studies is purely coincidental.
 
 :::::::::::::::  solution
 
-## Solution to Challenge 1
+## Solution to Case 2
 
 1. 
 ```r
@@ -266,6 +223,13 @@ NOTE: n is number in *each* group
 ```
 :::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+Case 3: 
+::::::::::::::::::::::::::::::::: solution
+:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
