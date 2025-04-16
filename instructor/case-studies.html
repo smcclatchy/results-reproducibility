@@ -290,7 +290,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Case Studies in Irreproducibility</h1>
-        <p>Last updated on 2025-04-14 |
+        <p>Last updated on 2025-04-16 |
 
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/case-studies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -371,7 +371,7 @@ misused methods, and batch effects.</p>
 of early onset Alzheimer’s Disease. The gene expression heatmap from
 their paper clearly delineates Alzheimer’s patients from a neurotypical
 control group.</p>
-<p><img src="../fig/AD_expression_heatmap.png" alt="heatmap of expression values" class="figure"> Watkins, K. Q., et al. (2022). A
+<p><img src=".././fig/AD_expression_heatmap.png" alt="heatmap of expression values" class="figure"> Watkins, K. Q., et al. (2022). A
 unique gene expression signature characterizes early Alzheimer’s
 disease. <em>Nature Alzheimer’s</em>, 33(3), 737-753.</p>
 <p>Use the <a href=".././code/AD_heatmap.R">R script</a>, the <a href=".././data/expr_matrix.csv">data</a>, and the <a href=".././data/expr_metadata.csv">metadata</a> to reproduce this plot.</p>
@@ -386,7 +386,7 @@ persons or real studies is purely coincidental.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">
-  Solution to Challenge 1
+  Solution to Case 1
   </h4>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
@@ -394,56 +394,6 @@ persons or real studies is purely coincidental.</p>
 <ol style="list-style-type: decimal"><li>You can replace <code>Diagnosis</code> with <code>Batch</code> in
 the call the <code>pheatmap</code>.</li>
 </ol><div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pheatmap</span><span class="op">(</span><span class="va">expr_matrix</span>, </span>
-<span>         annotation_col <span class="op">=</span> <span class="va">metadata</span><span class="op">[</span><span class="st">"Batch"</span><span class="op">]</span>, </span>
-<span>         fontsize_row   <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre>
-</div>
-<p>This will show the same heatmap, though in this one the genes
-delineate the batch rather than disease state. This is an example of
-complete confounding between batch and disease state. All of the
-Alzheimer’s samples were run in the first batch and all the controls in
-the second. There is no way to disentangle disease state from batch.</p>
-</div>
-</div>
-</div>
-</div>
-<div id="case-1-the-gene-set-that-characterizes-early-alzheimers-disease-1" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="case-1-the-gene-set-that-characterizes-early-alzheimers-disease-1" class="callout-inner">
-<h3 class="callout-title">Case 1: The gene set that characterizes early Alzheimer’s disease</h3>
-<div class="callout-content">
-<p>K.Q. Watkins and coauthors describe a unique gene set characteristic
-of early onset Alzheimer’s Disease. The gene expression heatmap from
-their paper clearly delineates Alzheimer’s patients from a neurotypical
-control group.</p>
-<p><img src=".././fig/AD_expression_heatmap.png" alt="heatmap of expression values" class="figure"> Watkins, K. Q., et al. (2022). A
-unique gene expression signature characterizes early Alzheimer’s
-disease. <em>Nature Alzheimer’s</em>, 33(3), 737-753.</p>
-<p>Use the <a href=".././code/AD_heatmap.R">R script</a>, the <a href=".././data/expr_matrix.csv">data</a>, and the <a href=".././data/expr_metadata.csv">metadata</a> to reproduce this plot.</p>
-<p>Can you find other ways to present the (meta)data in the heatmap?
-What do alternate ways of presenting the data show you?</p>
-<p>This is a simulated study and publication. Any resemblance to real
-persons or real studies is purely coincidental.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
-  Solution to Challenge 1
-  </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
-<div class="accordion-body">
-<ol style="list-style-type: decimal"><li>You can replace <code>Diagnosis</code> with <code>Batch</code> in
-the call the <code>pheatmap</code>.</li>
-</ol><div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -480,7 +430,7 @@ and t-test.</p>
 <ol style="list-style-type: decimal"><li><p>Create a scatterplot of the data by group to get further insight.
 You can also look at the entire dataset to get a sense of it.</p></li>
 <li><p>Calculate the effect size between the two groups.</p></li>
-</ol><div class="codewrapper sourceCode" id="cb3">
+</ol><div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -490,7 +440,7 @@ You can also look at the entire dataset to get a sense of it.</p></li>
 <span><span class="fu">print</span><span class="op">(</span><span class="va">d_result</span><span class="op">)</span></span></code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal"><li>Use the effect size to calculate statistical power.</li>
-</ol><div class="codewrapper sourceCode" id="cb4">
+</ol><div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -513,24 +463,24 @@ persons or real studies is purely coincidental.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3">
-  Solution to Challenge 1
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  Solution to Case 2
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb5">
+</li></ol><div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">Group</span>, <span class="va">HippocampalVolume</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <ol start="2" style="list-style-type: decimal"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb6">
+</li></ol><div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -550,7 +500,7 @@ d estimate: -1.558649 (large)
 -3.2238802  0.1065818</code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb8">
+</li></ol><div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -580,7 +530,7 @@ d estimate: -1.558649 (large)
 NOTE: n is number in *each* group</code></pre>
 </div>
 <ol start="4" style="list-style-type: decimal"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb10">
+</li></ol><div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -615,6 +565,18 @@ NOTE: n is number in *each* group</code></pre>
 </div>
 </div>
 </div>
+<div id="discussion1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
+<p>Case 3: ::::::::::::::::::::::::::::::::: solution</p>
+</div>
+</div>
+</div>
+<p>::::::::::::::::::::::::::::::::::::::::::::::::</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -692,8 +654,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/case-studies.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/case-studies.html",
   "dateCreated": "2025-04-03",
-  "dateModified": "2025-04-14",
-  "datePublished": "2025-04-15"
+  "dateModified": "2025-04-16",
+  "datePublished": "2025-04-16"
 }
 
   </script><script>
