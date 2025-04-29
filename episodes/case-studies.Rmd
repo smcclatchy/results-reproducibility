@@ -52,6 +52,7 @@ onset Alzheimer's Disease. The gene expression heatmap from their paper
 clearly delineates Alzheimer's patients from a neurotypical control group. 
 
 ![heatmap of expression values](./fig/AD_expression_heatmap.png)
+
 Watkins, K. Q., et al. (2022). A unique gene expression signature characterizes 
 early Alzheimer's disease. _Nature Alzheimer's_, 33(3), 737-753.
 
@@ -76,13 +77,23 @@ pheatmap(expr_matrix,
          fontsize_row   = 5)
 ```
 
-This will show the same heatmap, though in this one the genes delineate the 
-batch rather than disease state. This is an example of complete confounding
-between batch and disease state. All of the Alzheimer's samples were run in 
-the first batch and all the controls in the second. There is no way to
-disentangle disease state from batch.
+This will show the same heatmap, though in this one the legend shows batch 
+number instead of disease state. This is an example of complete confounding
+between batch and diagnosis. All of the Alzheimer's samples were run in 
+the first batch and all of the controls in the second. There is no way to
+disentangle disease state from batch. 
 
-![](./fig/Batch-processing-of-microarray-samples-from-different-biological-groups-Examples-of.png)
+The graphic below shows an example of complete confounding at right under
+`Can't Be Corrected`. Batch 1 contains only controls and batch 2 only disease
+samples. There is no method that will be able to discern the effect of the batch
+from the effect of disease or control. 
+
+Batch effects are common and can be corrected if samples are randomized to 
+batch. At left beneath `Can Be Corrected`, control and disease samples were 
+randomized to each of three batches. There can still be batch effects, however,
+there are methods available (e.g. `ComBat`) that can correct for these effects.
+
+![Batch effect and complete confounding](./fig/Batch-processing-of-microarray-samples-from-different-biological-groups-Examples-of.png)
 
 :::::::::::::::::::::::::::::::::
 
@@ -97,19 +108,21 @@ cognitive impairment (MCI). The boxplots below show a clear difference in
 hippocampal volume between the MCI and control groups. 
 
 ![heatmap of expression values](./fig/boxplots.png)
+
 Smith, K. Z., et al. (2023). Hippocampal volume loss in mild cognitive 
 impairment. _Science Progress_, 3(14), 37-53.
 
 A t-test gave a p-value of less than 0.05 to reject the null hypothesis of no 
-difference in means between the two groups.
+difference in means between the two groups. The boxplots appear to back up this
+assertion.
 
-Use the [R script](./code/t_test.R) and the [data](./data/small_sample_data.csv) 
-to reproduce the boxplot and t-test. 
+1. Use the [R script](./code/t_test.R) and the 
+[data](./data/small_sample_data.csv) to reproduce the boxplot and t-test. 
 
-1. Create a scatterplot of the data by group to get further insight. You can
+2. Create a scatterplot of the data by group to get further insight. You can
 also look at the entire dataset to get a sense of it.  
 
-2. Calculate the effect size between the two groups.
+3. Calculate the effect size between the two groups.
 
 ```r
 # Estimate effect size (Cohen's d for hippocampal volume)
@@ -118,7 +131,7 @@ d_result <- cohen.d(HippocampalVolume ~ Group, data = data)
 print(d_result)
 ```
 
-3. Use the effect size to calculate statistical power. 
+4. Use the effect size to calculate statistical power. 
 
 ```r
 # Estimate power for hippocampal volume
@@ -134,7 +147,7 @@ power_result <- pwr.t.test(
 print(power_result)
 ```
 
-4. What sample size (`n_per_group`) would have been needed to obtain 80% 
+5. What sample size (`n_per_group`) would have been needed to obtain 80% 
 statistical power in this experiment?
 
 This is a simulated study and publication. Any resemblance to real persons or 
@@ -144,12 +157,12 @@ real studies is purely coincidental.
 
 ## Solution to Case 2
 
-1. 
+2. 
 ```r
 data %>% ggplot(aes(Group, HippocampalVolume)) + geom_point()
 ```
 
-2. 
+3. 
 ```r
 # Estimate effect size (Cohen's d for hippocampal volume)
 library(effsize)
@@ -166,7 +179,7 @@ d estimate: -1.558649 (large)
 -3.2238802  0.1065818
 ```
 
-3. 
+4. 
 ```r
 # Estimate power for hippocampal volume
 # Using observed effect size 
@@ -193,7 +206,7 @@ print(power_result)
 NOTE: n is number in *each* group
 ```
 
-4.
+5.
 ```r
 # Update sample size to 8
 n_per_group <- 8
