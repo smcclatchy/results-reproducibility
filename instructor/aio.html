@@ -505,7 +505,7 @@ demonstrate?</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Since each treatment is run on only one day, the day effectively
 becomes the experimental unit (explain this). Each experimental unit
@@ -670,9 +670,10 @@ misused methods, and batch effects.</p>
 of early onset Alzheimer’s Disease. The gene expression heatmap from
 their paper clearly delineates Alzheimer’s patients from a neurotypical
 control group.</p>
-<p><img src=".././fig/AD_expression_heatmap.png" alt="heatmap of expression values" class="figure"> Watkins, K. Q., et al. (2022). A
-unique gene expression signature characterizes early Alzheimer’s
-disease. <em>Nature Alzheimer’s</em>, 33(3), 737-753.</p>
+<figure><img src=".././fig/AD_expression_heatmap.png" alt="heatmap of expression values" class="figure mx-auto d-block"><div class="figcaption">heatmap of expression values</div>
+</figure><p>Watkins, K. Q., et al. (2022). A unique gene expression signature
+characterizes early Alzheimer’s disease. <em>Nature Alzheimer’s</em>,
+33(3), 737-753.</p>
 <p>Use the <a href=".././code/AD_heatmap.R">R script</a>, the <a href=".././data/expr_matrix.csv">data</a>, and the <a href=".././data/expr_metadata.csv">metadata</a> to reproduce this plot.</p>
 <p>Can you find other ways to present the (meta)data in the heatmap?
 What do alternate ways of presenting the data show you?</p>
@@ -702,12 +703,23 @@ the call the <code>pheatmap</code>.</li>
 <span>         annotation_col <span class="op">=</span> <span class="va">metadata</span><span class="op">[</span><span class="st">"Batch"</span><span class="op">]</span>, </span>
 <span>         fontsize_row   <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre>
 </div>
-<p>This will show the same heatmap, though in this one the genes
-delineate the batch rather than disease state. This is an example of
-complete confounding between batch and disease state. All of the
-Alzheimer’s samples were run in the first batch and all the controls in
-the second. There is no way to disentangle disease state from batch.</p>
-<figure><img src=".././fig/Batch-processing-of-microarray-samples-from-different-biological-groups-Examples-of.png" class="figure mx-auto d-block"></figure>
+<p>This will show the same heatmap, though in this one the legend shows
+batch number instead of disease state. This is an example of complete
+confounding between batch and diagnosis. All of the Alzheimer’s samples
+were run in the first batch and all of the controls in the second. There
+is no way to disentangle disease state from batch.</p>
+<p>The graphic below shows an example of complete confounding at right
+under <code>Can't Be Corrected</code>. Batch 1 contains only controls
+and batch 2 only disease samples. There is no method that will be able
+to discern the effect of the batch from the effect of disease or
+control.</p>
+<p>Batch effects are common and can be corrected if samples are
+randomized to batch. At left beneath <code>Can Be Corrected</code>,
+control and disease samples were randomized to each of three batches.
+There can still be batch effects, however, there are methods available
+(e.g. <code>ComBat</code>) that can correct for these effects.</p>
+<figure><img src=".././fig/Batch-processing-of-microarray-samples-from-different-biological-groups-Examples-of.png" alt="Batch effect and complete confounding" class="figure mx-auto d-block"><div class="figcaption">Batch effect and complete confounding</div>
+</figure>
 </div>
 </div>
 </div>
@@ -722,14 +734,15 @@ the second. There is no way to disentangle disease state from batch.</p>
 <p>K.Z. Smith and coauthors describe hippocampal volume loss in subjects
 with mild cognitive impairment (MCI). The boxplots below show a clear
 difference in hippocampal volume between the MCI and control groups.</p>
-<p><img src=".././fig/boxplots.png" alt="heatmap of expression values" class="figure">
-Smith, K. Z., et al. (2023). Hippocampal volume loss in mild cognitive
-impairment. <em>Science Progress</em>, 3(14), 37-53.</p>
+<figure><img src=".././fig/boxplots.png" alt="heatmap of expression values" class="figure mx-auto d-block"><div class="figcaption">heatmap of expression values</div>
+</figure><p>Smith, K. Z., et al. (2023). Hippocampal volume loss in mild
+cognitive impairment. <em>Science Progress</em>, 3(14), 37-53.</p>
 <p>A t-test gave a p-value of less than 0.05 to reject the null
-hypothesis of no difference in means between the two groups.</p>
-<p>Use the <a href=".././code/t_test.R">R script</a> and the <a href=".././data/small_sample_data.csv">data</a> to reproduce the boxplot
-and t-test.</p>
+hypothesis of no difference in means between the two groups. The
+boxplots appear to back up this assertion.</p>
 <ol style="list-style-type: decimal">
+<li><p>Use the <a href=".././code/t_test.R">R script</a> and the <a href=".././data/small_sample_data.csv">data</a> to reproduce the boxplot
+and t-test.</p></li>
 <li><p>Create a scatterplot of the data by group to get further insight.
 You can also look at the entire dataset to get a sense of it.</p></li>
 <li><p>Calculate the effect size between the two groups.</p></li>
@@ -743,7 +756,7 @@ You can also look at the entire dataset to get a sense of it.</p></li>
 <span><span class="va">d_result</span> <span class="op">&lt;-</span> <span class="fu">cohen.d</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
 <span><span class="fu">print</span><span class="op">(</span><span class="va">d_result</span><span class="op">)</span></span></code></pre>
 </div>
-<ol start="3" style="list-style-type: decimal">
+<ol start="4" style="list-style-type: decimal">
 <li>Use the effect size to calculate statistical power.</li>
 </ol>
 <div class="codewrapper sourceCode" id="cb3">
@@ -762,7 +775,7 @@ You can also look at the entire dataset to get a sense of it.</p></li>
 <span><span class="op">)</span></span>
 <span><span class="fu">print</span><span class="op">(</span><span class="va">power_result</span><span class="op">)</span></span></code></pre>
 </div>
-<ol start="4" style="list-style-type: decimal">
+<ol start="5" style="list-style-type: decimal">
 <li>What sample size (<code>n_per_group</code>) would have been needed
 to obtain 80% statistical power in this experiment?</li>
 </ol>
@@ -780,7 +793,7 @@ persons or real studies is purely coincidental.</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<ol style="list-style-type: decimal"><li>
+<ol start="2" style="list-style-type: decimal"><li>
 </li></ol>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -788,7 +801,7 @@ persons or real studies is purely coincidental.</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">Group</span>, <span class="va">HippocampalVolume</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
-<ol start="2" style="list-style-type: decimal"><li>
+<ol start="3" style="list-style-type: decimal"><li>
 </li></ol>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -809,7 +822,7 @@ d estimate: -1.558649 (large)
      lower      upper
 -3.2238802  0.1065818</code></pre>
 </div>
-<ol start="3" style="list-style-type: decimal"><li>
+<ol start="4" style="list-style-type: decimal"><li>
 </li></ol>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -840,7 +853,7 @@ d estimate: -1.558649 (large)
 
 NOTE: n is number in *each* group</code></pre>
 </div>
-<ol start="4" style="list-style-type: decimal"><li>
+<ol start="5" style="list-style-type: decimal"><li>
 </li></ol>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
