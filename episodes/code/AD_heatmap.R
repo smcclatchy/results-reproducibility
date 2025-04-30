@@ -3,6 +3,9 @@
 
 library(pheatmap)
 
+metadata <- read.csv("data/expr_metadata.csv")
+expr_matrix <- read.table("data/expr_matrix.txt")
+
 # familiarize yourself with the data a bit
 head(metadata)
 head(expr_matrix[, 1:5])  # Show first few genes and samples

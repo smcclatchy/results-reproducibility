@@ -147,8 +147,8 @@ power_result <- pwr.t.test(
 print(power_result)
 ```
 
-5. What sample size (`n_per_group`) would have been needed to obtain 80% 
-statistical power in this experiment?
+5. What sample size (`n_per_group`) would have resulted in 80% statistical power 
+for this experiment?
 
 This is a simulated study and publication. Any resemblance to real persons or 
 real studies is purely coincidental.
@@ -156,6 +156,15 @@ real studies is purely coincidental.
 :::::::::::::::  solution
 
 ## Solution to Case 2
+
+1. 
+```r
+t_test_result <- t.test(HippocampalVolume ~ Group, data = data)
+print(t_test_result)
+
+boxplot(HippocampalVolume ~ Group, data = data, main = "Hippocampal Volume", 
+        ylab = "Volume (cm³)")
+```
 
 2. 
 ```r
@@ -241,8 +250,10 @@ NOTE: n is number in *each* group
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 Case 3: 
+
 ::::::::::::::::::::::::::::::::: solution
 :::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
