@@ -502,7 +502,7 @@ demonstrate?</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Since each treatment is run on only one day, the day effectively
 becomes the experimental unit (explain this). Each experimental unit
@@ -559,7 +559,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-case-studies"><p>Content from <a href="case-studies.html">Case Studies in Irreproducibility</a></p>
 <hr>
-<p>Last updated on 2025-04-29 |
+<p>Last updated on 2025-04-30 |
 
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/case-studies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -681,9 +681,7 @@ persons or real studies is purely coincidental.</p>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  Solution to Case 1
-  </h4>
+  <h4 class="accordion-header" id="headingSolution1"> Solution to Case 1 </h4>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
@@ -772,8 +770,8 @@ You can also look at the entire dataset to get a sense of it.</p></li>
 <span><span class="fu">print</span><span class="op">(</span><span class="va">power_result</span><span class="op">)</span></span></code></pre>
 </div>
 <ol start="5" style="list-style-type: decimal">
-<li>What sample size (<code>n_per_group</code>) would have been needed
-to obtain 80% statistical power in this experiment?</li>
+<li>What sample size (<code>n_per_group</code>) would have resulted in
+80% statistical power for this experiment?</li>
 </ol>
 <p>This is a simulated study and publication. Any resemblance to real
 persons or real studies is purely coincidental.</p>
@@ -783,15 +781,25 @@ persons or real studies is purely coincidental.</p>
 <div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
-  Solution to Case 2
-  </h4>
+  <h4 class="accordion-header" id="headingSolution2"> Solution to Case 2 </h4>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<ol start="2" style="list-style-type: decimal"><li>
+<ol style="list-style-type: decimal"><li>
 </li></ol>
 <div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t_test_result</span> <span class="op">&lt;-</span> <span class="fu">t.test</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">t_test_result</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">boxplot</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">data</span>, main <span class="op">=</span> <span class="st">"Hippocampal Volume"</span>, </span>
+<span>        ylab <span class="op">=</span> <span class="st">"Volume (cm³)"</span><span class="op">)</span></span></code></pre>
+</div>
+<ol start="2" style="list-style-type: decimal"><li>
+</li></ol>
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -799,7 +807,7 @@ persons or real studies is purely coincidental.</p>
 </div>
 <ol start="3" style="list-style-type: decimal"><li>
 </li></ol>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -820,7 +828,7 @@ d estimate: -1.558649 (large)
 </div>
 <ol start="4" style="list-style-type: decimal"><li>
 </li></ol>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -851,7 +859,7 @@ NOTE: n is number in *each* group</code></pre>
 </div>
 <ol start="5" style="list-style-type: decimal"><li>
 </li></ol>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -886,18 +894,29 @@ NOTE: n is number in *each* group</code></pre>
 </div>
 </div>
 </div>
-<div id="discussion1" class="callout discussion">
+<div id="challenge3" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
-<p>Case 3: ::::::::::::::::::::::::::::::::: solution</p>
+<p>Case 3:</p>
 </div>
 </div>
 </div>
-<p>::::::::::::::::::::::::::::::::::::::::::::::::</p>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -967,8 +986,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/aio.html",
   "dateCreated": "2025-04-03",
-  "dateModified": "2025-04-29",
-  "datePublished": "2025-04-29"
+  "dateModified": "2025-04-30",
+  "datePublished": "2025-04-30"
 }
 
   </script><script>
