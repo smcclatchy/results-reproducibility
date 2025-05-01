@@ -1,0 +1,304 @@
+---
+title: "Common Causes of Irreproducibility"
+teaching: 10
+exercises: 2
+---
+
+:::::::::::::::::::::::::::::::::::::: questions 
+
+- What are some common reasons for irreproducibility?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Describe a conceptual framework for reproducibility.
+- Explain how and why adopting reproducible practices benefits research.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Solutions for irreproducible research
+Solutions for irreproducible research already exist and are freely available. 
+The open science movement encourages practices like data sharing and 
+preregistration with an aim to make research freely available to everyone.
+Adopting open science practices accelerates scientific progress and increases 
+trust in research findings. Greater transparency and sharing improves research
+reproducibility.
+
+Reproducible research depends on understanding how experiments were performed 
+and how data were generated. There are two critical elements to improve 
+reproducibility:  
+1. Increased transparency and sharing of research reagents, methods, and data  
+2. Accelerated sharing of results (preprints)  
+[from Reproducibility for Everyone](https://www.repro4everyone.org/)
+
+Pre-registration is public sharing of your research and analysis plan prior to 
+starting a study by submitting it to a registry like that hosted by the 
+[Center for Open Science](https://www.cos.io/initiatives/prereg).
+Pre-registering increases research transparency and rigor, which may boost
+public confidence in federally funded research. Pre-registering can prevent 
+overfitting, which happens when analysis decisions are too specific to a 
+particular sample or study. Pre-registering also prevents some questionable 
+research practices like p-hacking, cherry picking, or hypothesizing after 
+results are known (HARKing). 
+
+Data sharing starts by making a data sharing plan at the outset, before 
+collecting any data. Data should be 
+"*as open as possible and as closed as necessary*." The parts of the data to 
+share should include:  
+1. The raw data  
+2. A tidy data set  
+3. A data dictionary describing each variable and its values in the tidy data 
+set   
+4. An explicit and exact recipe you used to go from the raw data (1) to tidy 
+data and the dictionary (2,3).  
+adapted from [Ellis SE, Leek JT. 2017. How to share data for collaboration. PeerJ Preprints 5:e3139v5](https://doi.org/10.7287/peerj.preprints.3139v5)
+
+Scripts to analyze the data can also be shared on platforms like Github. 
+Reagents and methods can be shared in appropriate repositories.
+
+|         | *Data Sets*| *Reagents*                    | *Scripts*          | *Methods*                    | *Paper*                      |
+|---------|:-----------|------------------------------:|:------------------:|-----------------------------:|-----------------------------:|
+| What    | Data sets  | New reagents, model organisms | Analysis scripts   | Detailed methods & protocols | Preprint ahead of publication |
+| Where   | Repository | Repository                    | Developer platform | Repository                   | Preprint server              |
+| Example | Dryad      | Addgene, Flybase              | Github             | protocols.io                 | AfricArXiv, BiorXiv, MedRxiv |
+
+Accelerated sharing of research resources 
+[from Reproducibility for Everyone](https://www.repro4everyone.org/)
+
+## P-value interpretation
+
+## Batch effects
+no randomization
+with randomization still batch effects due to technician, time of day, weather,
+or any other variable not under study that influence the study nevertheless.
+Randomization balances out these other variables
+
+## Small sample size and low power
+cost per sample
+statistical power is the power to detect a real effect if it exists
+
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Case 1: The gene set that characterizes early Alzheimer's disease 
+
+K.Q. Watkins and coauthors describe a unique gene set characteristic of early
+onset Alzheimer's Disease. The gene expression heatmap from their paper
+clearly delineates Alzheimer's patients from a neurotypical control group. 
+
+![heatmap of expression values](./fig/AD_expression_heatmap.png)
+
+Watkins, K. Q., et al. (2022). A unique gene expression signature characterizes 
+early Alzheimer's disease. _Nature Alzheimer's_, 33(3), 737-753.
+
+Use the [R script](./code/AD_heatmap.R), the [data](./data/expr_matrix.csv), and 
+the [metadata](./data/expr_metadata.csv) to reproduce this plot. 
+
+Can you find other ways to present the (meta)data in the heatmap? 
+What do alternate ways of presenting the data show you?
+
+This is a simulated study and publication. Any resemblance to real persons or 
+real studies is purely coincidental.
+
+:::::::::::::::  solution
+
+## Solution to Case 1
+
+1. You can replace `Diagnosis` with `Batch` in the call the `pheatmap`.
+
+```r
+pheatmap(expr_matrix, 
+         annotation_col = metadata["Batch"], 
+         fontsize_row   = 5)
+```
+
+This will show the same heatmap, though in this one the legend shows batch 
+number instead of disease state. This is an example of complete confounding
+between batch and diagnosis. All of the Alzheimer's samples were run in 
+the first batch and all of the controls in the second. There is no way to
+disentangle disease state from batch. 
+
+The graphic below shows an example of complete confounding at right under
+`Can't Be Corrected`. Batch 1 contains only controls and batch 2 only disease
+samples. There is no method that will be able to discern the effect of the batch
+from the effect of disease or control. 
+
+Batch effects are common and can be corrected if samples are randomized to 
+batch. At left beneath `Can Be Corrected`, control and disease samples were 
+randomized to each of three batches. There can still be batch effects, however,
+there are methods available (e.g. `ComBat`) that can correct for these effects.
+
+![Batch effect and complete confounding](./fig/Batch-processing-of-microarray-samples-from-different-biological-groups-Examples-of.png)
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Case 2: Hippocampal volume reduction in mild cognitive impairment (MCI)
+
+K.Z. Smith and coauthors describe hippocampal volume loss in subjects with mild 
+cognitive impairment (MCI). The boxplots below show a clear difference in
+hippocampal volume between the MCI and control groups. 
+
+![heatmap of expression values](./fig/boxplots.png)
+
+Smith, K. Z., et al. (2023). Hippocampal volume loss in mild cognitive 
+impairment. _Science Progress_, 3(14), 37-53.
+
+A t-test gave a p-value of less than 0.05 to reject the null hypothesis of no 
+difference in means between the two groups. The boxplots appear to back up this
+assertion.
+
+1. Use the [R script](./code/t_test.R) and the 
+[data](./data/small_sample_data.csv) to reproduce the boxplot and t-test. 
+
+2. Create a scatterplot of the data by group to get further insight. You can
+also look at the entire dataset to get a sense of it.  
+
+3. Calculate the effect size between the two groups.
+
+```r
+# Estimate effect size (Cohen's d for hippocampal volume)
+library(effsize)
+d_result <- cohen.d(HippocampalVolume ~ Group, data = data)
+print(d_result)
+```
+
+4. Use the effect size to calculate statistical power. 
+
+```r
+# Estimate power for hippocampal volume
+# Using observed effect size 
+library(pwr)
+power_result <- pwr.t.test(
+  d = d_result$estimate,
+  n = n_per_group,
+  sig.level = 0.05,
+  type = "two.sample",
+  alternative = "two.sided"
+)
+print(power_result)
+```
+
+5. What sample size (`n_per_group`) would have resulted in 80% statistical power 
+for this experiment?
+
+This is a simulated study and publication. Any resemblance to real persons or 
+real studies is purely coincidental.
+
+:::::::::::::::  solution
+
+## Solution to Case 2
+
+1. 
+```r
+t_test_result <- t.test(HippocampalVolume ~ Group, data = data)
+print(t_test_result)
+
+boxplot(HippocampalVolume ~ Group, data = data, main = "Hippocampal Volume", 
+        ylab = "Volume (cm³)")
+```
+
+2. 
+```r
+data %>% ggplot(aes(Group, HippocampalVolume)) + geom_point()
+```
+
+3. 
+```r
+# Estimate effect size (Cohen's d for hippocampal volume)
+library(effsize)
+d_result <- cohen.d(HippocampalVolume ~ Group, data = data)
+print(d_result)
+```
+
+```output
+Cohen's d
+
+d estimate: -1.558649 (large)
+95 percent confidence interval:
+     lower      upper 
+-3.2238802  0.1065818
+```
+
+4. 
+```r
+# Estimate power for hippocampal volume
+# Using observed effect size 
+library(pwr)
+power_result <- pwr.t.test(
+  d = d_result$estimate,
+  n = n_per_group,
+  sig.level = 0.05,
+  type = "two.sample",
+  alternative = "two.sided"
+)
+print(power_result)
+```
+
+```output
+     Two-sample t test power calculation 
+
+              n = 5
+              d = 1.558649
+      sig.level = 0.05
+          power = 0.581064
+    alternative = two.sided
+
+NOTE: n is number in *each* group
+```
+
+5.
+```r
+# Update sample size to 8
+n_per_group <- 8
+
+# Estimate power for hippocampal volume
+# Using observed effect size 
+power_result <- pwr.t.test(
+  d = d_result$estimate,
+  n = n_per_group,
+  sig.level = 0.05,
+  type = "two.sample",
+  alternative = "two.sided"
+)
+print(power_result)
+```
+
+```output
+     Two-sample t test power calculation 
+
+              n = 8
+              d = 1.558649
+      sig.level = 0.05
+          power = 0.8258431
+    alternative = two.sided
+
+NOTE: n is number in *each* group
+```
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+Case 3: 
+
+::::::::::::::::::::::::::::::::: solution
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+
+::::::::::::::::::::::::::::::::::::: keypoints 
+
+- Reproducibility has many definitions.
+- We define reproducibility here as using the same data and methods as the original study.
+- Adopting reproducible practices strengthens science and makes it more rigorous.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
