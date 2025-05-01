@@ -17,6 +17,55 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Solutions for irreproducible research
+Solutions for irreproducible research already exist and are freely available. 
+The open science movement encourages practices like data sharing and 
+preregistration with an aim to make research freely available to everyone.
+Adopting open science practices accelerates scientific progress and increases 
+trust in research findings. Greater transparency and sharing improves research
+reproducibility.
+
+Reproducible research depends on understanding how experiments were performed 
+and how data were generated. There are two critical elements to improve 
+reproducibility:  
+1. Increased transparency and sharing of research reagents, methods, and data  
+2. Accelerated sharing of results (preprints)  
+[from Reproducibility for Everyone](https://www.repro4everyone.org/)
+
+Pre-registration is public sharing of your research and analysis plan prior to 
+starting a study by submitting it to a registry like that hosted by the 
+[Center for Open Science](https://www.cos.io/initiatives/prereg).
+Pre-registering increases research transparency and rigor, which may boost
+public confidence in federally funded research. Pre-registering can prevent 
+overfitting, which happens when analysis decisions are too specific to a 
+particular sample or study. Pre-registering also prevents some questionable 
+research practices like p-hacking, cherry picking, or hypothesizing after 
+results are known (HARKing). 
+
+Data sharing starts by making a data sharing plan at the outset, before 
+collecting any data. Data should be 
+"*as open as possible and as closed as necessary*." The parts of the data to 
+share should include:  
+1. The raw data  
+2. A tidy data set  
+3. A data dictionary describing each variable and its values in the tidy data 
+set   
+4. An explicit and exact recipe you used to go from the raw data (1) to tidy 
+data and the dictionary (2,3).  
+adapted from [Ellis SE, Leek JT. 2017. How to share data for collaboration. PeerJ Preprints 5:e3139v5](https://doi.org/10.7287/peerj.preprints.3139v5)
+
+Scripts to analyze the data can also be shared on platforms like Github. 
+Reagents and methods can be shared in appropriate repositories.
+
+|         | *Data Sets*| *Reagents*                    | *Scripts*          | *Methods*                    | *Paper*                      |
+|---------|:-----------|------------------------------:|:------------------:|-----------------------------:|-----------------------------:|
+| What    | Data sets  | New reagents, model organisms | Analysis scripts   | Detailed methods & protocols | Preprint ahead of publication |
+| Where   | Repository | Repository                    | Developer platform | Repository                   | Preprint server              |
+| Example | Dryad      | Addgene, Flybase              | Github             | protocols.io                 | AfricArXiv, BiorXiv, MedRxiv |
+
+Accelerated sharing of research resources 
+[from Reproducibility for Everyone](https://www.repro4everyone.org/)
+
 ## P-value interpretation
 
 ## Batch effects
@@ -29,27 +78,6 @@ Randomization balances out these other variables
 cost per sample
 statistical power is the power to detect a real effect if it exists
 
-## solutions
-open science - "as open as possible, as closed as necessary"
-Reproducible research hinges on understanding how experiments were performed and how data was acquired 
-Two critical elements to improve reproducibility: 
-Increased transparency and sharing of research reagents, methods, and data
-Accelerated sharing of results (preprints)
-data sharing, code sharing, pre-registration of research
-make a data sharing plan at the outset
-parts of the data to share
-1. The raw data
-2. A tidy data set
-3. A data dictionary describing each variable and its values in the tidy data set.
-4. An explicit and exact recipe you used to go from 1 -> 2,3
-
-|      | *Data Sets*       | *Reagents*     | *Scripts* | *Methods*       | *Paper*  |
-|------|:-------------|------:|:-------------:|------:|
-| What | Data sets | Newly created reagents, model organisms | Analysis scripts | Detailed methods & protocols | Preprint ahead of publication |
-| Where     | Repository      | Repository | Developer platform | Repository | Preprint server |
-| Example     | Dryad      | Addgene, Flybase | Github | protocols.io | AfricArXiv, BiorXiv, MedRxiv |
-
-accelerated sharing of research resources (R4E)
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
