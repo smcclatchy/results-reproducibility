@@ -18,7 +18,7 @@ carpentry: 'incubator'
 carpentry_description: ''
 
 # Overall title for pages.
-title: 'Reproducibility in Alzheimers Disease Studies' # FIXME
+title: 'Reproducibility in Alzheimers Disease Studies'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: 2025-04-03
@@ -68,6 +68,7 @@ contact: 'smcclatchy1@gmail.com'
 episodes: 
 - introduction.Rmd
 - case-studies.Rmd
+- common-causes-of-irreproducibility.Rmd
 
 # Information for Learners
 learners: 
