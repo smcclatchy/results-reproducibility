@@ -250,7 +250,7 @@ NOTE: n is number in *each* group
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-Case 3: A novel biomarker for diagnosis of Alzheimer's Disease
+## Case 3: A novel biomarker for diagnosis of Alzheimer's Disease
 
 Your colleague J Mackerel discovered a novel biomarker for Alzheimer's Disease
 and provided you with [data](./data/multiple_testing_data.csv) and an 
@@ -266,7 +266,8 @@ What do you recommend? How would you proceed? Are you convinced of the finding?
 ::::::::::::::::::::::::::::::::: solution
 P-values are no longer useful to interpret when working with high-dimensional 
 data because we are testing many *features* at the same time. This is called the
-multiple comparison or multiple testing problem. When we test many hypotheses simultaneously, a list of p-values can result in many false positives. This 
+multiple comparison or multiple testing problem. When we test many hypotheses 
+simultaneously, a list of p-values can result in many false positives. This 
 example had relatively few features, however, enough t-tests were performed to
 reasonably expect that a p-value less than .05 would occur.
 
