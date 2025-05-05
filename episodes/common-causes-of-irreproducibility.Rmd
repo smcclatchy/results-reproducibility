@@ -86,6 +86,19 @@ size and uncertainty associated with these estimates. When reporting results,
 use confidence intervals.
 
 
+A p-value is the probability of observing a statistic that extreme if the null 
+hypothesis is true. 
+
+The p-value is not
+Probability the null is true
+Probability the alternative is true
+A measure of statistical evidence
+
+Suppose 550 out of 10,000 genes are significant at 0.05 level
+
+P-value < 0.05
+Expect 0.05*10,000 = 500 false positives
+- Jeff Leek
 
 ## Batch effects
 no randomization
@@ -104,6 +117,7 @@ size? Between sample size and power?
 
 ```{r power-curve-2, echo=FALSE}
 library(broom)
+library(tidyverse)
 
 # start with a vector of effect size values to plot
 seq(.01, 2, .49) %>% 
@@ -207,13 +221,13 @@ there are methods available (e.g. `ComBat`) that can correct for these effects.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Case 2: Hippocampal volume reduction in mild cognitive impairment (MCI)
+## Case 2: Hippocampal volume increase in mild cognitive impairment (MCI)
 
-K.Z. Smith and coauthors describe hippocampal volume loss in subjects with mild 
-cognitive impairment (MCI). The boxplots below show a clear difference in
+K.Z. Smith and coauthors describe increased hippocampal volume in subjects with 
+mild cognitive impairment (MCI). The boxplots below show a clear difference in
 hippocampal volume between the MCI and control groups. 
 
-![heatmap of expression values](./fig/boxplots.png)
+![boxplots of hippocampal volume](./fig/boxplots.png)
 
 Smith, K. Z., et al. (2023). Hippocampal volume loss in mild cognitive 
 impairment. _Science Progress_, 3(14), 37-53.
