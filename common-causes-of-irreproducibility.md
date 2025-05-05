@@ -58,8 +58,8 @@ Scripts to analyze the data can also be shared on platforms like Github.
 Reagents and methods can be shared in appropriate repositories.
 
 |         | *Data Sets*| *Reagents*                    | *Scripts*          | *Methods*                    | *Paper*                      |
-|---------|:-----------|------------------------------:|:------------------:|-----------------------------:|-----------------------------:|
-| What    | Data sets  | New reagents, model organisms | Analysis scripts   | Detailed methods & protocols | Preprint ahead of publication |
+|---------|:-----------|:------------------------------|:------------------ |:-----------------------------|:-----------------------------|
+| What    | Data sets  | New reagents, model organisms | Analysis scripts   | Detailed methods & protocols | Preprint ahead of publication|
 | Where   | Repository | Repository                    | Developer platform | Repository                   | Preprint server              |
 | Example | Dryad      | Addgene, Flybase              | Github             | protocols.io                 | AfricArXiv, BiorXiv, MedRxiv |
 
@@ -67,17 +67,54 @@ Accelerated sharing of research resources
 [from Reproducibility for Everyone](https://www.repro4everyone.org/)
 
 ## P-value interpretation
+A p-value can indicate a statistically significant difference between study 
+groups. It is not enough, though, to report only a p-value. The p-value says 
+nothing about the effect size (the observed difference between groups). If the 
+effect size was tiny, say .01 or less, would it matter how small the p-value is? 
+The effect is negligible, so the p-value does nothing to demonstrate practical 
+relevance or meaning. We should question how large the effect is. 
+
+A p-value can only tell us whether an effect exists. However, a p-value greater 
+than .05 doesn’t mean that no effect exists. The value .05 is rather arbitrary. 
+Does a p-value of .06 mean that there is no effect? It does not. It would not 
+provide evidence of an effect under standard statistical protocol. Absence of 
+evidence is not evidence of absence. There could still be an effect.
+
+P-values report statistical significance of an effect, but what we want is 
+scientific significance. Confidence intervals include estimates of the effect 
+size and uncertainty associated with these estimates. When reporting results, 
+use confidence intervals.
+
+
 
 ## Batch effects
 no randomization
 with randomization still batch effects due to technician, time of day, weather,
 or any other variable not under study that influence the study nevertheless.
 Randomization balances out these other variables
+![Batch effect and complete confounding](./fig/Batch-processing-of-microarray-samples-from-different-biological-groups-Examples-of.png)
 
 ## Small sample size and low power
-cost per sample
+Small sample size is often cost per sample
 statistical power is the power to detect a real effect if it exists
 
+Review the following figure to explore the relationships between effect size, 
+sample size, and power. What is the relationship between effect size and sample 
+size? Between sample size and power?
+
+
+``` error
+Error in seq(0.01, 2, 0.49) %>% rev() %>% map(~power.t.test(n = seq(2, : could not find function "%>%"
+```
+
+Code adapted from 
+[How to Create Power Curves in ggplot](https://levibaguley.github.io/2020/06/22/how-to-create-power-curves-in-ggplot/) 
+by Levi Baguley
+
+Notice that to detect a standardized effect size of 0.5 at 80% power, you would 
+need a sample size of approximately 70. Larger effect sizes require much smaller
+sample sizes. Very small effects such as .01 never reach the 80% power threshold
+without enormous samples sizes in the hundreds of thousands.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 

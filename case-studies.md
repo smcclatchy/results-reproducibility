@@ -17,7 +17,7 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Problems and solutions to irreproducible research
+## Problems in irreproducible research
 From here we will look at some common problems in irreproducible research. We
 will also discuss ways to overcome these problems. Recall that our definition of
 reproducible research means that authors provide all data and code to run 
@@ -36,12 +36,12 @@ human or technical issues that impact an experiment. We can investigate study
 design and statistics, however, in data analysis. We will focus on issues with
 study design, misused methods, and batch effects.
 
-| *Factors*                  | *Examples*                                      |
-|----------------------------|-------------------------------------------------|
-| Technical                  | Bad reagents or cell lines, natural variability |
-| Study design & statistics  | Design flaws, misused methods, batch effects    |
-| Human                      | Poor record keeping or sharing, confirmation bias|
-| Rewards & incentives       | Fraud, paywalls, perverse incentives            |
+| *Factors*                 | *Examples*                                       |
+|---------------------------|--------------------------------------------------|
+| Technical                 | Bad reagents or cell lines, natural variability  |
+| Study design & statistics | Design flaws, misused methods, batch effects     |
+| Human                     | Poor record keeping or sharing, confirmation bias|
+| Rewards & incentives      | Fraud, paywalls, perverse incentives             |
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -101,15 +101,15 @@ there are methods available (e.g. `ComBat`) that can correct for these effects.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Case 2: Hippocampal volume reduction in mild cognitive impairment (MCI)
+## Case 2: Hippocampal volume increase in mild cognitive impairment (MCI)
 
-K.Z. Smith and coauthors describe hippocampal volume loss in subjects with mild 
-cognitive impairment (MCI). The boxplots below show a clear difference in
-hippocampal volume between the MCI and control groups. 
+K.Z. Smith and coauthors describe higher mean hippocampal volume in subjects 
+with mild cognitive impairment (MCI). The boxplots below show a clear difference 
+in hippocampal volume between the MCI and control groups. 
 
 ![heatmap of expression values](./fig/boxplots.png)
 
-Smith, K. Z., et al. (2023). Hippocampal volume loss in mild cognitive 
+Smith, K. Z., et al. (2023). Hippocampal volume increase in mild cognitive 
 impairment. _Science Progress_, 3(14), 37-53.
 
 A t-test gave a p-value of less than 0.05 to reject the null hypothesis of no 
@@ -127,7 +127,7 @@ also look at the entire dataset to get a sense of it.
 ```r
 # Estimate effect size (Cohen's d for hippocampal volume)
 library(effsize)
-d_result <- cohen.d(HippocampalVolume ~ Group, data = data)
+d_result <- cohen.d(HippocampalVolume ~ Group, data = hippocampus)
 print(d_result)
 ```
 
@@ -159,23 +159,24 @@ real studies is purely coincidental.
 
 1. 
 ```r
-t_test_result <- t.test(HippocampalVolume ~ Group, data = data)
+t_test_result <- t.test(HippocampalVolume ~ Group, data = hippocampus)
 print(t_test_result)
 
-boxplot(HippocampalVolume ~ Group, data = data, main = "Hippocampal Volume", 
+boxplot(HippocampalVolume ~ Group, data = hippocampus, 
+        main = "Hippocampal Volume", 
         ylab = "Volume (cm³)")
 ```
 
 2. 
 ```r
-data %>% ggplot(aes(Group, HippocampalVolume)) + geom_point()
+hippocampus %>% ggplot(aes(Group, HippocampalVolume)) + geom_point()
 ```
 
 3. 
 ```r
 # Estimate effect size (Cohen's d for hippocampal volume)
 library(effsize)
-d_result <- cohen.d(HippocampalVolume ~ Group, data = data)
+d_result <- cohen.d(HippocampalVolume ~ Group, data = hippocampus)
 print(d_result)
 ```
 
@@ -249,9 +250,28 @@ NOTE: n is number in *each* group
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-Case 3: 
+Case 3: A novel biomarker for diagnosis of Alzheimer's Disease
+
+Your colleague J Mackerel discovered a novel biomarker for Alzheimer's Disease
+and provided you with [data](./data/multiple_testing_data.csv) and an 
+[analysis script](./code/biomarkers.R) to review the finding. Run the script to 
+load the data and reproduce the result. 
+
+One of the biomarkers had a p-value of less than .05 in a t-test comparing means 
+of the control and Alzheimer's groups. Your colleague is very excited and ready
+to go to press with this!  
+
+What do you recommend? How would you proceed? Are you convinced of the finding?
 
 ::::::::::::::::::::::::::::::::: solution
+P-values are no longer useful to interpret when working with high-dimensional 
+data because we are testing many *features* at the same time. This is called the
+multiple comparison or multiple testing problem. When we test many hypotheses simultaneously, a list of p-values can result in many false positives. This 
+example had relatively few features, however, enough t-tests were performed to
+reasonably expect that a p-value less than .05 would occur.
+
+The solution to the multiple testing problem is correction using a method such
+as the Bonferroni correction.
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
