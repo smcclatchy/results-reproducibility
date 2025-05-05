@@ -225,7 +225,7 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#problems-and-solutions-to-irreproducible-research">Problems and solutions to irreproducible research</a></li>
+        <ul><li><a href="#problems-in-irreproducible-research">Problems in irreproducible research</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -299,7 +299,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Case Studies in Irreproducibility</h1>
-        <p>Last updated on 2025-05-01 |
+        <p>Last updated on 2025-05-05 |
 
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/case-studies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -334,7 +334,7 @@ research.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="problems-and-solutions-to-irreproducible-research">Problems and solutions to irreproducible research<a class="anchor" aria-label="anchor" href="#problems-and-solutions-to-irreproducible-research"></a></h2>
+<section><h2 class="section-heading" id="problems-in-irreproducible-research">Problems in irreproducible research<a class="anchor" aria-label="anchor" href="#problems-in-irreproducible-research"></a></h2>
 <hr class="half-width"><p>From here we will look at some common problems in irreproducible
 research. We will also discuss ways to overcome these problems. Recall
 that our definition of reproducible research means that authors provide
@@ -357,7 +357,7 @@ analysts we also can’t fix some of the human or technical issues that
 impact an experiment. We can investigate study design and statistics,
 however, in data analysis. We will focus on issues with study design,
 misused methods, and batch effects.</p>
-<table class="table"><colgroup><col width="36%"><col width="63%"></colgroup><thead><tr class="header"><th><em>Factors</em></th>
+<table class="table"><colgroup><col width="35%"><col width="64%"></colgroup><thead><tr class="header"><th><em>Factors</em></th>
 <th><em>Examples</em></th>
 </tr></thead><tbody><tr class="odd"><td>Technical</td>
 <td>Bad reagents or cell lines, natural variability</td>
@@ -395,7 +395,7 @@ persons or real studies is purely coincidental.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Solution to Case 1 </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>You can replace <code>Diagnosis</code> with <code>Batch</code> in
 the call the <code>pheatmap</code>.</li>
@@ -427,18 +427,19 @@ There can still be batch effects, however, there are methods available
 </div>
 </div>
 </div>
-<div id="case-2-hippocampal-volume-reduction-in-mild-cognitive-impairment-mci" class="callout challenge">
+<div id="case-2-hippocampal-volume-increase-in-mild-cognitive-impairment-mci" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="case-2-hippocampal-volume-reduction-in-mild-cognitive-impairment-mci" class="callout-inner">
-<h3 class="callout-title">Case 2: Hippocampal volume reduction in mild cognitive impairment (MCI)</h3>
+<div id="case-2-hippocampal-volume-increase-in-mild-cognitive-impairment-mci" class="callout-inner">
+<h3 class="callout-title">Case 2: Hippocampal volume increase in mild cognitive impairment (MCI)</h3>
 <div class="callout-content">
-<p>K.Z. Smith and coauthors describe hippocampal volume loss in subjects
-with mild cognitive impairment (MCI). The boxplots below show a clear
-difference in hippocampal volume between the MCI and control groups.</p>
+<p>K.Z. Smith and coauthors describe higher mean hippocampal volume in
+subjects with mild cognitive impairment (MCI). The boxplots below show a
+clear difference in hippocampal volume between the MCI and control
+groups.</p>
 <figure><img src="./fig/boxplots.png" alt="heatmap of expression values" class="figure mx-auto d-block"><div class="figcaption">heatmap of expression values</div>
-</figure><p>Smith, K. Z., et al. (2023). Hippocampal volume loss in mild
+</figure><p>Smith, K. Z., et al. (2023). Hippocampal volume increase in mild
 cognitive impairment. <em>Science Progress</em>, 3(14), 37-53.</p>
 <p>A t-test gave a p-value of less than 0.05 to reject the null
 hypothesis of no difference in means between the two groups. The
@@ -454,7 +455,7 @@ You can also look at the entire dataset to get a sense of it.</p></li>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Estimate effect size (Cohen's d for hippocampal volume)</span></span>
 <span><span class="kw">library</span><span class="op">(</span><span class="va">effsize</span><span class="op">)</span></span>
-<span><span class="va">d_result</span> <span class="op">&lt;-</span> <span class="fu">cohen.d</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
+<span><span class="va">d_result</span> <span class="op">&lt;-</span> <span class="fu">cohen.d</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">hippocampus</span><span class="op">)</span></span>
 <span><span class="fu">print</span><span class="op">(</span><span class="va">d_result</span><span class="op">)</span></span></code></pre>
 </div>
 <ol start="4" style="list-style-type: decimal"><li>Use the effect size to calculate statistical power.</li>
@@ -486,17 +487,18 @@ persons or real studies is purely coincidental.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution to Case 2 </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>
 </li></ol><div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t_test_result</span> <span class="op">&lt;-</span> <span class="fu">t.test</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">t_test_result</span> <span class="op">&lt;-</span> <span class="fu">t.test</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">hippocampus</span><span class="op">)</span></span>
 <span><span class="fu">print</span><span class="op">(</span><span class="va">t_test_result</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">boxplot</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">data</span>, main <span class="op">=</span> <span class="st">"Hippocampal Volume"</span>, </span>
+<span><span class="fu">boxplot</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">hippocampus</span>, </span>
+<span>        main <span class="op">=</span> <span class="st">"Hippocampal Volume"</span>, </span>
 <span>        ylab <span class="op">=</span> <span class="st">"Volume (cm³)"</span><span class="op">)</span></span></code></pre>
 </div>
 <ol start="2" style="list-style-type: decimal"><li>
@@ -504,7 +506,7 @@ persons or real studies is purely coincidental.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">Group</span>, <span class="va">HippocampalVolume</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">hippocampus</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">Group</span>, <span class="va">HippocampalVolume</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal"><li>
 </li></ol><div class="codewrapper sourceCode" id="cb6">
@@ -513,7 +515,7 @@ persons or real studies is purely coincidental.</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Estimate effect size (Cohen's d for hippocampal volume)</span></span>
 <span><span class="kw">library</span><span class="op">(</span><span class="va">effsize</span><span class="op">)</span></span>
-<span><span class="va">d_result</span> <span class="op">&lt;-</span> <span class="fu">cohen.d</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
+<span><span class="va">d_result</span> <span class="op">&lt;-</span> <span class="fu">cohen.d</span><span class="op">(</span><span class="va">HippocampalVolume</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">hippocampus</span><span class="op">)</span></span>
 <span><span class="fu">print</span><span class="op">(</span><span class="va">d_result</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
@@ -599,7 +601,15 @@ NOTE: n is number in *each* group</code></pre>
 <div class="callout-inner">
 <h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
-<p>Case 3:</p>
+<p>Case 3: A novel biomarker for diagnosis of Alzheimer’s Disease</p>
+<p>Your colleague J Mackerel discovered a novel biomarker for
+Alzheimer’s Disease and provided you with <a href="./data/multiple_testing_data.csv">data</a> and an <a href="./code/biomarkers.R">analysis script</a> to review the finding.
+Run the script to load the data and reproduce the result.</p>
+<p>One of the biomarkers had a p-value of less than .05 in a t-test
+comparing means of the control and Alzheimer’s groups. Your colleague is
+very excited and ready to go to press with this!</p>
+<p>What do you recommend? How would you proceed? Are you convinced of
+the finding?</p>
 </div>
 </div>
 </div>
@@ -608,9 +618,17 @@ NOTE: n is number in *each* group</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-
+<p>P-values are no longer useful to interpret when working with
+high-dimensional data because we are testing many <em>features</em> at
+the same time. This is called the multiple comparison or multiple
+testing problem. When we test many hypotheses simultaneously, a list of
+p-values can result in many false positives. This example had relatively
+few features, however, enough t-tests were performed to reasonably
+expect that a p-value less than .05 would occur.</p>
+<p>The solution to the multiple testing problem is correction using a
+method such as the Bonferroni correction.</p>
 </div>
 </div>
 </div>
@@ -692,8 +710,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/case-studies.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/case-studies.html",
   "dateCreated": "2025-04-03",
-  "dateModified": "2025-05-01",
-  "datePublished": "2025-05-01"
+  "dateModified": "2025-05-05",
+  "datePublished": "2025-05-05"
 }
 
   </script><script>
