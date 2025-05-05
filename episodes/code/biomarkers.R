@@ -1,10 +1,15 @@
 library(tidyverse)
 
 # load data
-data <- read.csv(file = "data/multiple_testing_data.csv")
+data <- read_csv(file = "data/multiple_testing_data.csv")
 
-# apply a t-test across all variables from columns 5 to 15
-p_values <- data %>% summarize(across(5:15, 
-                                      function(bio)
-                                        t.test(bio ~ data$Group)$p.value))
-print(p_values)
+# apply t-tests across all variables and save the p-values
+pvalues <- data %>% summarize(across(5:15, 
+                                     function(bio) t.test(bio ~ data$Group)$p.value)) %>% 
+  unlist()
+
+
+# which p-values are less than 0.05?
+pvalues[pvalues < 0.05]
+
+# Success! You found a new biomarker! Time to publish!
