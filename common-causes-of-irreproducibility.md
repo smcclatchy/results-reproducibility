@@ -86,6 +86,19 @@ size and uncertainty associated with these estimates. When reporting results,
 use confidence intervals.
 
 
+A p-value is the probability of observing a statistic that extreme if the null 
+hypothesis is true. 
+
+The p-value is not
+Probability the null is true
+Probability the alternative is true
+A measure of statistical evidence
+
+Suppose 550 out of 10,000 genes are significant at 0.05 level
+
+P-value < 0.05
+Expect 0.05*10,000 = 500 false positives
+- Jeff Leek
 
 ## Batch effects
 no randomization
@@ -103,9 +116,20 @@ sample size, and power. What is the relationship between effect size and sample
 size? Between sample size and power?
 
 
-``` error
-Error in seq(0.01, 2, 0.49) %>% rev() %>% map(~power.t.test(n = seq(2, : could not find function "%>%"
+``` output
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
+
+<img src="fig/common-causes-of-irreproducibility-rendered-power-curve-2-1.png" style="display: block; margin: auto;" />
 
 Code adapted from 
 [How to Create Power Curves in ggplot](https://levibaguley.github.io/2020/06/22/how-to-create-power-curves-in-ggplot/) 
@@ -174,13 +198,13 @@ there are methods available (e.g. `ComBat`) that can correct for these effects.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Case 2: Hippocampal volume reduction in mild cognitive impairment (MCI)
+## Case 2: Hippocampal volume increase in mild cognitive impairment (MCI)
 
-K.Z. Smith and coauthors describe hippocampal volume loss in subjects with mild 
-cognitive impairment (MCI). The boxplots below show a clear difference in
+K.Z. Smith and coauthors describe increased hippocampal volume in subjects with 
+mild cognitive impairment (MCI). The boxplots below show a clear difference in
 hippocampal volume between the MCI and control groups. 
 
-![heatmap of expression values](./fig/boxplots.png)
+![boxplots of hippocampal volume](./fig/boxplots.png)
 
 Smith, K. Z., et al. (2023). Hippocampal volume loss in mild cognitive 
 impairment. _Science Progress_, 3(14), 37-53.
