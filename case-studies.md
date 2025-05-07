@@ -107,7 +107,7 @@ K.Z. Smith and coauthors describe higher mean hippocampal volume in subjects
 with mild cognitive impairment (MCI). The boxplots below show a clear difference 
 in hippocampal volume between the MCI and control groups. 
 
-![heatmap of expression values](./fig/boxplots.png)
+![boxplots of hippocampal volume](./fig/boxplots.png)
 
 Smith, K. Z., et al. (2023). Hippocampal volume increase in mild cognitive 
 impairment. _Science Progress_, 3(14), 37-53.
