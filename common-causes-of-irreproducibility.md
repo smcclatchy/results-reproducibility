@@ -115,7 +115,10 @@ Review the following figure to explore the relationships between effect size,
 sample size, and power. What is the relationship between effect size and sample 
 size? Between sample size and power?
 
-<img src="fig/common-causes-of-irreproducibility-rendered-power-curve-2-1.png" style="display: block; margin: auto;" />
+
+``` error
+Error in list2(na.rm = na.rm, orientation = orientation, arrow = arrow, : object 'ffi_list2' not found
+```
 
 Code adapted from 
 [How to Create Power Curves in ggplot](https://levibaguley.github.io/2020/06/22/how-to-create-power-curves-in-ggplot/) 
